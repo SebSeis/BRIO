@@ -1,0 +1,906 @@
+@prefix : <https://w3id.org/brio#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dicp: <https://w3id.org/digitalconstruction/0.5/Processes#> .
+@prefix ocqa: <https://w3id.org/ocqa#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ocqa-reg: <https://w3id.org/ocqa/regulation#> .
+@base <https://w3id.org/brio#> .
+
+<https://w3id.org/brio> rdf:type owl:Ontology ;
+                         owl:versionIRI <https://w3id.org/brio/0.1.1> ;
+                         dcterms:editor "Patricia Peralta" ,
+                                        "Sebastian Seiß" ,
+                                        "Yuan Zheng" ;
+                         dcterms:title "BrIO"@en ;
+                         vann:preferredNamespacePrefix "brio" ;
+                         vann:preferredNamespaceUri : ;
+                         rdfs:comment "Ontologie für die Planung von Brückenprüfungen und das Management von Brückenprüfungsdaten."@de ,
+                                      "Ontology for bridge inspection planning and bridge inspection data management."@en ;
+                         rdfs:isDefinedBy : ;
+                         rdfs:label "BrIO ontology"@en ,
+                                    "BrIO-Ontologie"@de ;
+                         owl:versionInfo "0.1.1" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/editor
+dcterms:editor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+vann:preferredNamespacePrefix rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceUri
+vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/brio#hasInspectionType
+:hasInspectionType rdf:type owl:ObjectProperty ;
+                   rdfs:domain :BridgeComponentInspection ;
+                   rdfs:range :BridgeInspectionType ;
+                   rdfs:comment "Relates an inspection to its inspection type."@en ,
+                                "Verknüpft eine Prüfung mit ihrem Prüfungstyp."@de ;
+                   rdfs:label "hat Prüfungstyp"@de .
+
+
+###  https://w3id.org/brio#hasInspector
+:hasInspector rdf:type owl:ObjectProperty ;
+              rdfs:domain ocqa:Inspection ;
+              rdfs:range ocqa:Inspector ;
+              rdfs:comment "Relates an inspection to the responsible inspector."@en ,
+                           "Verknüpft eine Prüfung mit dem verantwortlichen Inspektor."@de ;
+              rdfs:label "hat Inspektor"@de .
+
+
+###  https://w3id.org/brio#preceeds
+:preceeds rdf:type owl:ObjectProperty ;
+          owl:equivalentProperty dicp:precedes ;
+          rdfs:domain :PreparatoryMeasure ;
+          rdfs:range ocqa:Inspection ;
+          rdfs:comment "Deprecated misspelled property IRI. Use dicp:precedes instead."@en ,
+                       "Veraltete, falsch geschriebene Eigenschafts-IRI. Verwenden Sie stattdessen dicp:precedes."@de ;
+          rdfs:label "preceeds (deprecated)"@en ,
+                     "preceeds (veraltet)"@de ;
+          rdfs:seeAlso dicp:precedes ;
+          owl:deprecated "true"^^xsd:boolean .
+
+
+###  https://w3id.org/digitalconstruction/0.5/Processes#precedes
+dicp:precedes rdf:type owl:ObjectProperty ;
+              rdfs:domain :PreparatoryMeasure ;
+              rdfs:range ocqa:Inspection ;
+              rdfs:comment "Relates a preparatory measure to an inspection that it precedes."@en ,
+                           "Verknüpft eine vorbereitende Maßnahme mit einer Prüfung, der sie vorausgeht."@de ;
+              rdfs:label "geht voraus"@de ,
+                         "precedes"@en .
+
+
+###  https://w3id.org/ocqa#hasActualCharacteristic
+ocqa:hasActualCharacteristic rdf:type owl:ObjectProperty ;
+                             rdfs:domain ocqa:Characteristic ;
+                             rdfs:range ocqa:ActualCharacteristicValue ;
+                             rdfs:comment "Relates a characteristic to its observed or measured actual value."@en ,
+                                          "Verknüpft ein Merkmal mit seinem beobachteten oder gemessenen Istwert."@de ;
+                             rdfs:label "hat tatsächlichen Merkmalswert"@de .
+
+
+###  https://w3id.org/ocqa#hasAssignedCharacteristicValue
+ocqa:hasAssignedCharacteristicValue rdf:type owl:ObjectProperty ;
+                                    rdfs:domain ocqa:Characteristic ;
+                                    rdfs:range ocqa:AssignedCharacteristicValue ;
+                                    rdfs:comment "Relates a characteristic to its assigned reference or target value."@en ,
+                                                 "Verknüpft ein Merkmal mit seinem zugewiesenen Referenz- oder Sollwert."@de ;
+                                    rdfs:label "hat vorgegebenen Merkmalswert"@de .
+
+
+###  https://w3id.org/ocqa#hasDocumentation
+ocqa:hasDocumentation rdf:type owl:ObjectProperty ;
+                      rdfs:domain [ rdf:type owl:Class ;
+                                    owl:unionOf ( ocqa:Evaluation
+                                                  ocqa:Inspection
+                                                )
+                                  ] ;
+                      rdfs:range :Documentation ;
+                      rdfs:comment "Relates an inspection or evaluation to documentation such as images, videos, or external resources."@en ,
+                                   "Verknüpft eine Prüfung oder Bewertung mit Dokumentation wie Bildern, Videos oder externen Ressourcen."@de ;
+                      rdfs:label "hat Dokumentation"@de .
+
+
+###  https://w3id.org/ocqa#hasInspCharacteristic
+ocqa:hasInspCharacteristic rdf:type owl:ObjectProperty ;
+                           rdfs:domain ocqa:Inspection ;
+                           rdfs:range ocqa:Characteristic ;
+                           rdfs:comment "Relates an inspection to the characteristics that are evaluated in that inspection."@en ,
+                                        "Verknüpft eine Prüfung mit den Merkmalen, die in dieser Prüfung bewertet werden."@de ;
+                           rdfs:label "hat Prüfungsmerkmal"@de .
+
+
+###  https://w3id.org/ocqa#hasInspection
+ocqa:hasInspection rdf:type owl:ObjectProperty ;
+                   rdfs:range ocqa:Inspection ;
+                   rdfs:comment "Relates a resource to an inspection."@en ,
+                                "Verknüpft eine Ressource mit einer Prüfung."@de ;
+                   rdfs:label "hat Prüfung"@de .
+
+
+###  https://w3id.org/ocqa#hasInspectionEquipment
+ocqa:hasInspectionEquipment rdf:type owl:ObjectProperty ;
+                            rdfs:domain ocqa:Inspection ;
+                            rdfs:range ocqa:InspectionEquipment ;
+                            rdfs:comment "Relates an inspection to the equipment used to perform it."@en ,
+                                         "Verknüpft eine Prüfung mit der Ausrüstung, die zu ihrer Durchführung verwendet wird."@de ;
+                            rdfs:label "hat Prüfungsausrüstung"@de .
+
+
+###  https://w3id.org/ocqa#hasInspectionProcedure
+ocqa:hasInspectionProcedure rdf:type owl:ObjectProperty ;
+                            rdfs:domain ocqa:Inspection ;
+                            rdfs:range ocqa:InspectionProcedure ;
+                            rdfs:comment "Relates an inspection to the procedure applied during the inspection."@en ,
+                                         "Verknüpft eine Prüfung mit dem Verfahren, das während der Prüfung angewendet wird."@de ;
+                            rdfs:label "hat Prüfungsverfahren"@de .
+
+
+###  https://w3id.org/ocqa#hasRecord
+ocqa:hasRecord rdf:type owl:ObjectProperty ;
+               rdfs:domain ocqa:Inspection ;
+               rdfs:range ocqa:Evaluation ;
+               rdfs:comment "Relates an inspection to an evaluation result that records a finding."@en ,
+                            "Verknüpft eine Prüfung mit einem Bewertungsergebnis, das einen Befund dokumentiert."@de ;
+               rdfs:label "hat Befund"@de .
+
+
+###  https://w3id.org/ocqa/regulation#requiredBy
+ocqa-reg:requiredBy rdf:type owl:ObjectProperty ;
+                    owl:equivalentProperty ocqa-reg:requiredby ;
+                    rdfs:domain ocqa:Inspection ;
+                    rdfs:range :Regulation ;
+                    rdfs:comment "Links an inspection to the regulation that requires or defines it."@en ,
+                                 "Verknüpft eine Prüfung mit der Regelung, durch die sie gefordert oder definiert wird."@de ;
+                    rdfs:label "erforderlich durch"@de ,
+                               "required by"@en .
+
+
+###  https://w3id.org/ocqa/regulation#requiredby
+ocqa-reg:requiredby rdf:type owl:ObjectProperty ;
+                    rdfs:domain ocqa:Inspection ;
+                    rdfs:range :Regulation ;
+                    rdfs:comment "Deprecated property with non-standard casing. Use ocqa-reg:requiredBy instead."@en ,
+                                 "Veraltete Eigenschaft mit uneinheitlicher Groß- und Kleinschreibung. Verwenden Sie stattdessen ocqa-reg:requiredBy."@de ;
+                    rdfs:label "requiredby (deprecated)"@en ,
+                               "requiredby (veraltet)"@de ;
+                    rdfs:seeAlso ocqa-reg:requiredBy ;
+                    owl:deprecated "true"^^xsd:boolean .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://w3id.org/brio#accessibility
+:accessibility rdf:type owl:DatatypeProperty ;
+               rdfs:domain :BridgeComponentInspection ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Qualitative Zugänglichkeit eines Brückenbauteils für die Prüfung, zum Beispiel einfach, eingeschränkt oder komplex."@de ,
+                            "Qualitative accessibility of a bridge component for inspection, for example easy, limited, or complex."@en ;
+               rdfs:label "Zugänglichkeit"@de .
+
+
+###  https://w3id.org/brio#damageID
+:damageID rdf:type owl:DatatypeProperty ;
+          rdfs:domain ocqa:Nonconformity ;
+          rdfs:range xsd:string ;
+          rdfs:comment "Identifier assigned to a detected nonconformity or damage."@en ,
+                       "Kennung, die einer festgestellten Nichtkonformität oder einem Schaden zugeordnet ist."@de ;
+          rdfs:label "Schadens-ID"@de .
+
+
+###  https://w3id.org/brio#description
+:description rdf:type owl:DatatypeProperty ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Textual description of a resource."@en ,
+                          "Textuelle Beschreibung einer Ressource."@de ;
+             rdfs:label "Beschreibung"@de .
+
+
+###  https://w3id.org/brio#environment
+:environment rdf:type owl:DatatypeProperty ;
+             rdfs:domain :BridgeComponentInspection ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Environmental context relevant to the inspection."@en ,
+                          "Umgebungskontext, der für die Prüfung relevant ist."@de ;
+             rdfs:label "Umgebung"@de .
+
+
+###  https://w3id.org/brio#equipmentID
+:equipmentID rdf:type owl:DatatypeProperty ;
+             rdfs:domain ocqa:InspectionEquipment ;
+             rdfs:range xsd:string ;
+             rdfs:comment "Identifier assigned to a piece of inspection equipment."@en ,
+                          "Kennung, die einer Prüfungsausrüstung zugeordnet ist."@de ;
+             rdfs:label "Ausrüstungs-ID"@de .
+
+
+###  https://w3id.org/brio#equipmentName
+:equipmentName rdf:type owl:DatatypeProperty ;
+               rdfs:domain ocqa:InspectionEquipment ;
+               rdfs:range xsd:string ;
+               rdfs:comment "Human-readable name of a piece of inspection equipment."@en ,
+                            "Menschenlesbarer Name einer Prüfungsausrüstung."@de ;
+               rdfs:label "Ausrüstungsname"@de .
+
+
+###  https://w3id.org/brio#hasDurabilityRating
+:hasDurabilityRating rdf:type owl:DatatypeProperty ;
+                     rdfs:domain ocqa:Nonconformity ;
+                     rdfs:range xsd:double ;
+                     rdfs:comment "Numeric rating that expresses the durability impact of a detected nonconformity."@en ,
+                                  "Numerische Bewertung, die die Dauerhaftigkeitsauswirkung einer festgestellten Nichtkonformität ausdrückt."@de ;
+                     rdfs:label "hat Dauerhaftigkeitsbewertung"@de .
+
+
+###  https://w3id.org/brio#hasMaxValue
+:hasMaxValue rdf:type owl:DatatypeProperty ;
+             rdfs:domain ocqa:AssignedCharacteristicValue ;
+             rdfs:range xsd:double ;
+             rdfs:comment "Maximal zulässiger oder vorgegebener Wert für eine Merkmalswertspezifikation."@de ,
+                          "Maximum allowed or assigned value for a characteristic value specification."@en ;
+             rdfs:label "hat Maximalwert"@de .
+
+
+###  https://w3id.org/brio#hasStructuralRating
+:hasStructuralRating rdf:type owl:DatatypeProperty ;
+                     rdfs:domain ocqa:Nonconformity ;
+                     rdfs:range xsd:double ;
+                     rdfs:comment "Numeric rating that expresses the structural impact of a detected nonconformity."@en ,
+                                  "Numerische Bewertung, die die statische Auswirkung einer festgestellten Nichtkonformität ausdrückt."@de ;
+                     rdfs:label "hat Standsicherheitsbewertung"@de .
+
+
+###  https://w3id.org/brio#hasTrafficSafetyRating
+:hasTrafficSafetyRating rdf:type owl:DatatypeProperty ;
+                        rdfs:domain ocqa:Nonconformity ;
+                        rdfs:range xsd:double ;
+                        rdfs:comment "Numeric rating that expresses the traffic-safety impact of a detected nonconformity."@en ,
+                                     "Numerische Bewertung, die die Auswirkung einer festgestellten Nichtkonformität auf die Verkehrssicherheit ausdrückt."@de ;
+                        rdfs:label "hat Verkehrssicherheitsbewertung"@de .
+
+
+###  https://w3id.org/brio#hasUnit
+:hasUnit rdf:type owl:DatatypeProperty ;
+         rdfs:domain [ rdf:type owl:Class ;
+                       owl:unionOf ( ocqa:ActualCharacteristicValue
+                                     ocqa:AssignedCharacteristicValue
+                                   )
+                     ] ;
+         rdfs:range xsd:string ;
+         rdfs:comment "Einheit, die mit einem gemessenen oder vorgegebenen Wert verbunden ist."@de ,
+                      "Unit associated with a measured or assigned value."@en ;
+         rdfs:label "hat Einheit"@de .
+
+
+###  https://w3id.org/brio#hasValue
+:hasValue rdf:type owl:DatatypeProperty ;
+          rdfs:domain ocqa:ActualCharacteristicValue ;
+          rdfs:range xsd:double ;
+          rdfs:comment "Beobachteter numerischer Wert einer Merkmalswertressource."@de ,
+                       "Observed numeric value of a characteristic value resource."@en ;
+          rdfs:label "hat Wert"@de .
+
+
+###  https://w3id.org/brio#inspectionFrequency
+:inspectionFrequency rdf:type owl:DatatypeProperty ;
+                     rdfs:domain :BridgeInspectionType ;
+                     rdfs:range xsd:string ;
+                     rdfs:comment "Frequency or interval at which an inspection type is normally carried out."@en ,
+                                  "Frequency statement for an inspection type. In this version it is represented as a string."@en ,
+                                  "Frequenzangabe für einen Prüfungstyp. In dieser Version wird sie als Zeichenkette repräsentiert."@de ,
+                                  "Häufigkeit oder Intervall, in dem ein Prüfungstyp normalerweise durchgeführt wird."@de ;
+                     rdfs:label "Prüfungshäufigkeit"@de .
+
+
+###  https://w3id.org/brio#inspectionScope
+:inspectionScope rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :BridgeInspectionType ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "Textual description of the scope of an inspection type."@en ,
+                              "Textuelle Beschreibung des Umfangs eines Prüfungstyps."@de ;
+                 rdfs:label "Prüfungsumfang"@de .
+
+
+###  https://w3id.org/brio#quantity
+:quantity rdf:type owl:DatatypeProperty ;
+          rdfs:domain :BridgeComponentInspection ;
+          rdfs:range xsd:string ;
+          rdfs:comment "Menge des inspizierten Brückenbauteils, derzeit als Text einschließlich der Einheit dargestellt."@de ,
+                       "Quantity of the inspected bridge component, currently represented as text including the unit."@en ,
+                       "Quantity inspected of a bridge component (e.g., m, m2)" ;
+          rdfs:label "Menge"@de .
+
+
+###  https://w3id.org/brio#recommendation
+:recommendation rdf:type owl:DatatypeProperty ;
+                rdfs:domain :BridgeComponentInspection ;
+                rdfs:range xsd:string ;
+                rdfs:comment "Empfehlung, die aus dem Prüfungsergebnis abgeleitet wird."@de ,
+                             "Recommendation derived from the inspection result."@en ,
+                             "Recommendations for a bridge component after an inspection" ;
+                rdfs:label "Empfehlung"@de .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  https://w3id.org/brio#AASHTO-Manual
+:AASHTO-Manual rdf:type owl:Class ;
+               rdfs:subClassOf ocqa-reg:Guideline ;
+               rdfs:comment "Class for AASHTO manuals used as bridge inspection guidelines."@en ,
+                            "Klasse für AASHTO-Handbücher, die als Richtlinien für die Brückenprüfung verwendet werden."@de ;
+               rdfs:label "AASHTO-Handbuch"@de .
+
+
+###  https://w3id.org/brio#AccessMeasure
+:AccessMeasure rdf:type owl:Class ;
+               rdfs:subClassOf :PreparatoryMeasure ;
+               rdfs:comment "Preparatory measure required to obtain physical access to the inspection object."@en ,
+                            "Vorbereitende Maßnahme, die erforderlich ist, um physischen Zugang zum Prüfungsobjekt zu erhalten."@de ;
+               rdfs:label "Zugangsmaßnahme"@de .
+
+
+###  https://w3id.org/brio#BridgeAccessEquipment
+:BridgeAccessEquipment rdf:type owl:Class ;
+                       rdfs:subClassOf ocqa:InspectionEquipment ;
+                       rdfs:comment "Inspection equipment used to access bridge components, for example a basket truck or under-bridge unit."@en ,
+                                    "Prüfungsausrüstung, die zum Zugang zu Brückenbauteilen verwendet wird, zum Beispiel ein Hubkorbfahrzeug oder ein Brückenuntersichtgerät."@de ;
+                       rdfs:label "Brückenzugangsausrüstung"@de .
+
+
+###  https://w3id.org/brio#BridgeAttachementInspection
+:BridgeAttachementInspection rdf:type owl:Class ;
+                             owl:equivalentClass :BridgeAttachmentInspection ;
+                             rdfs:subClassOf :Sub-componentInspection ;
+                             rdfs:comment "Deprecated misspelled class IRI. Use brio:BridgeAttachmentInspection instead."@en ,
+                                          "Veraltete Klasse mit falsch geschriebener IRI. Verwenden Sie stattdessen brio:BridgeAttachmentInspection."@de ;
+                             rdfs:label "Prüfung von Brückenanbauteilen (veraltet)"@de ,
+                                        "bridge attachment inspection (deprecated)"@en ;
+                             rdfs:seeAlso :BridgeAttachmentInspection ;
+                             owl:deprecated "true"^^xsd:boolean .
+
+
+###  https://w3id.org/brio#BridgeAttachmentInspection
+:BridgeAttachmentInspection rdf:type owl:Class ;
+                            rdfs:subClassOf :Sub-componentInspection ;
+                            rdfs:comment "Inspection of attached bridge elements such as mounted devices or accessories."@en ,
+                                         "Prüfung von an der Brücke befestigten Elementen wie montierten Geräten oder Zubehör."@de ;
+                            rdfs:label "Prüfung von Brückenanbauteilen"@de ,
+                                       "bridge attachment inspection"@en .
+
+
+###  https://w3id.org/brio#BridgeBearingInspection
+:BridgeBearingInspection rdf:type owl:Class ;
+                         rdfs:subClassOf :Sub-componentInspection ;
+                         rdfs:comment "Inspection of bridge bearings."@en ,
+                                      "Prüfung von Brückenlagern."@de ;
+                         rdfs:label "Lagerprüfung"@de .
+
+
+###  https://w3id.org/brio#BridgeComponentInspection
+:BridgeComponentInspection rdf:type owl:Class ;
+                           rdfs:subClassOf ocqa:Inspection ;
+                           rdfs:comment "Inspection that targets a bridge component or a specific part of a bridge component."@en ,
+                                        "Prüfung, die auf ein Brückenbauteil oder einen spezifischen Teil eines Brückenbauteils gerichtet ist."@de ;
+                           rdfs:label "Brückenbauteilprüfung"@de .
+
+
+###  https://w3id.org/brio#BridgeConcreteComponentInspection
+:BridgeConcreteComponentInspection rdf:type owl:Class ;
+                                   rdfs:subClassOf :Material-basedInspection ;
+                                   rdfs:comment "Inspection of bridge components made of concrete."@en ,
+                                                "Prüfung von Brückenbauteilen aus Beton."@de ;
+                                   rdfs:label "Prüfung von Betonbauteilen der Brücke"@de .
+
+
+###  https://w3id.org/brio#BridgeDrainageSystemInspection
+:BridgeDrainageSystemInspection rdf:type owl:Class ;
+                                rdfs:subClassOf :Sub-componentInspection ;
+                                rdfs:comment "Inspection of the bridge drainage system."@en ,
+                                             "Prüfung des Entwässerungssystems einer Brücke."@de ;
+                                rdfs:label "Entwässerungssystemprüfung"@de .
+
+
+###  https://w3id.org/brio#BridgeFoundationInspection
+:BridgeFoundationInspection rdf:type owl:Class ;
+                            rdfs:subClassOf :Sub-componentInspection ;
+                            rdfs:comment "Inspection of bridge foundation elements."@en ,
+                                         "Prüfung von Gründungselementen einer Brücke."@de ;
+                            rdfs:label "Gründungsprüfung"@de .
+
+
+###  https://w3id.org/brio#BridgeInspectionEquipment
+:BridgeInspectionEquipment rdf:type owl:Class ;
+                           rdfs:subClassOf ocqa:InspectionEquipment ;
+                           rdfs:comment "Inspection equipment specifically used for bridge inspection tasks."@en ,
+                                        "Prüfungsausrüstung, die speziell für Aufgaben der Brückenprüfung verwendet wird."@de ;
+                           rdfs:label "Brückenprüfungsausrüstung"@de .
+
+
+###  https://w3id.org/brio#BridgeInspectionType
+:BridgeInspectionType rdf:type owl:Class ;
+                      rdfs:comment "Typ oder Kategorie einer Brückenprüfung, zum Beispiel Regelprüfung oder eingehende Prüfung."@de ,
+                                   "Type or category of a bridge inspection, for example routine or in-depth inspection."@en ;
+                      rdfs:label "Brückenprüfungstyp"@de .
+
+
+###  https://w3id.org/brio#BridgeJointInspection
+:BridgeJointInspection rdf:type owl:Class ;
+                       rdfs:subClassOf :Sub-componentInspection ;
+                       rdfs:comment "Inspection of bridge joints."@en ,
+                                    "Prüfung von Brückenfugen."@de ;
+                       rdfs:label "Fugenprüfung"@de .
+
+
+###  https://w3id.org/brio#BridgeMasonryComponentInspection
+:BridgeMasonryComponentInspection rdf:type owl:Class ;
+                                  rdfs:subClassOf :Material-basedInspection ;
+                                  rdfs:comment "Inspection of bridge components made of masonry."@en ,
+                                               "Prüfung von Brückenbauteilen aus Mauerwerk."@de ;
+                                  rdfs:label "Prüfung von Mauerwerksbauteilen der Brücke"@de .
+
+
+###  https://w3id.org/brio#BridgeRailingSystemInspection
+:BridgeRailingSystemInspection rdf:type owl:Class ;
+                               rdfs:subClassOf :Sub-componentInspection ;
+                               rdfs:comment "Inspection of bridge railing systems."@en ,
+                                            "Prüfung von Geländersystemen einer Brücke."@de ;
+                               rdfs:label "Geländersystemprüfung"@de .
+
+
+###  https://w3id.org/brio#BridgeSteelCoatingInspection
+:BridgeSteelCoatingInspection rdf:type owl:Class ;
+                              rdfs:subClassOf :Sub-componentInspection ;
+                              rdfs:comment "Inspection of coatings on steel bridge components."@en ,
+                                           "Prüfung von Beschichtungen auf Stahlbauteilen der Brücke."@de ;
+                              rdfs:label "Beschichtungsprüfung von Stahlbauteilen"@de .
+
+
+###  https://w3id.org/brio#BridgeSteelStructureInspection
+:BridgeSteelStructureInspection rdf:type owl:Class ;
+                                rdfs:subClassOf :Material-basedInspection ;
+                                rdfs:comment "Inspection of steel bridge structures or steel bridge components."@en ,
+                                             "Prüfung von Stahltragwerken oder Stahlbauteilen einer Brücke."@de ;
+                                rdfs:label "Stahlbauwerksprüfung"@de .
+
+
+###  https://w3id.org/brio#BridgeTimberStructureInspection
+:BridgeTimberStructureInspection rdf:type owl:Class ;
+                                 rdfs:subClassOf :Material-basedInspection ;
+                                 rdfs:comment "Inspection of timber bridge structures or timber bridge components."@en ,
+                                              "Prüfung von Holztragwerken oder Holzbauteilen einer Brücke."@de ;
+                                 rdfs:label "Holzbauwerksprüfung"@de .
+
+
+###  https://w3id.org/brio#BridgeWearingSurfaceInspection
+:BridgeWearingSurfaceInspection rdf:type owl:Class ;
+                                rdfs:subClassOf :Sub-componentInspection ;
+                                rdfs:comment "Inspection of the bridge wearing surface."@en ,
+                                             "Prüfung der Fahrbahnoberfläche einer Brücke."@de ;
+                                rdfs:label "Fahrbahnoberflächenprüfung"@de .
+
+
+###  https://w3id.org/brio#DestructiveTestingEquipment
+:DestructiveTestingEquipment rdf:type owl:Class ;
+                             rdfs:subClassOf ocqa:InspectionEquipment ;
+                             rdfs:comment "Inspection equipment used for destructive testing methods."@en ,
+                                          "Prüfungsausrüstung für Verfahren der zerstörenden Prüfung."@de ;
+                             rdfs:label "Ausrüstung für zerstörende Prüfung"@de .
+
+
+###  https://w3id.org/brio#Documentation
+:Documentation rdf:type owl:Class ;
+               rdfs:comment "Documentation resource created or used during an inspection or evaluation."@en ,
+                            "Dokumentationsressource, die während einer Prüfung oder Bewertung erstellt oder verwendet wird."@de ;
+               rdfs:label "Dokumentation"@de .
+
+
+###  https://w3id.org/brio#Material-basedInspection
+:Material-basedInspection rdf:type owl:Class ;
+                          rdfs:subClassOf :BridgeComponentInspection ;
+                          rdfs:comment "Inspection category that groups inspections by material type of the inspected bridge component."@en ,
+                                       "Prüfungskategorie, die Prüfungen nach dem Materialtyp des inspizierten Brückenbauteils gruppiert."@de ;
+                          rdfs:label "Materialbasierte Prüfung"@de .
+
+
+###  https://w3id.org/brio#Non-destructiveTestingEquipment
+:Non-destructiveTestingEquipment rdf:type owl:Class ;
+                                 rdfs:subClassOf ocqa:InspectionEquipment ;
+                                 rdfs:comment "Inspection equipment used for non-destructive testing methods."@en ,
+                                              "Prüfungsausrüstung für Verfahren der zerstörungsfreien Prüfung."@de ;
+                                 rdfs:label "Ausrüstung für zerstörungsfreie Prüfung"@de .
+
+
+###  https://w3id.org/brio#PreparatoryMeasure
+:PreparatoryMeasure rdf:type owl:Class ;
+                    rdfs:comment "Maßnahme, die durchgeführt werden muss, bevor eine Prüfung erfolgen kann."@de ,
+                                 "Measure that must be carried out before an inspection can be performed."@en ;
+                    rdfs:label "Vorbereitende Maßnahme"@de .
+
+
+###  https://w3id.org/brio#Regulation
+:Regulation rdf:type owl:Class ;
+            rdfs:comment "Normative or regulatory document that governs bridge inspection activities."@en ,
+                         "Normatives oder regulatorisches Dokument, das Brückenprüfungen regelt."@de ;
+            rdfs:label "Regelwerk"@de .
+
+
+###  https://w3id.org/brio#SiteInspection
+:SiteInspection rdf:type owl:Class ;
+                rdfs:subClassOf :BridgeComponentInspection ;
+                rdfs:comment "Inspection performed directly on site at the bridge."@en ,
+                             "Prüfung, die direkt vor Ort an der Brücke durchgeführt wird."@de ;
+                rdfs:label "Ortsterminprüfung"@de .
+
+
+###  https://w3id.org/brio#Sub-componentInspection
+:Sub-componentInspection rdf:type owl:Class ;
+                         rdfs:subClassOf :BridgeComponentInspection ;
+                         rdfs:comment "Inspection of a sub-component of a bridge component."@en ,
+                                      "Prüfung eines Teilbauteils eines Brückenbauteils."@de ;
+                         rdfs:label "Teilbauteilprüfung"@de .
+
+
+###  https://w3id.org/brio#TrafficSafetyMeasure
+:TrafficSafetyMeasure rdf:type owl:Class ;
+                      rdfs:subClassOf :PreparatoryMeasure ;
+                      rdfs:comment "Preparatory measure used to ensure traffic safety during an inspection."@en ,
+                                   "Vorbereitende Maßnahme zur Sicherstellung der Verkehrssicherheit während einer Prüfung."@de ;
+                      rdfs:label "Verkehrssicherungsmaßnahme"@de .
+
+
+###  https://w3id.org/ocqa#ActualCharacteristicValue
+ocqa:ActualCharacteristicValue rdf:type owl:Class ;
+                               owl:disjointWith ocqa:AssignedCharacteristicValue ;
+                               rdfs:comment "Beobachteter oder gemessener Wert eines Prüfungsmerkmals."@de ,
+                                            "Observed or measured value of an inspection characteristic."@en ;
+                               rdfs:label "Tatsächlicher Merkmalswert"@de .
+
+
+###  https://w3id.org/ocqa#AssignedCharacteristicValue
+ocqa:AssignedCharacteristicValue rdf:type owl:Class ;
+                                 rdfs:comment "Reference or target value assigned to an inspection characteristic."@en ,
+                                              "Referenz- oder Sollwert, der einem Prüfungsmerkmal zugeordnet ist."@de ;
+                                 rdfs:label "Vorgegebener Merkmalswert"@de .
+
+
+###  https://w3id.org/ocqa#Characteristic
+ocqa:Characteristic rdf:type owl:Class ;
+                    rdfs:comment "Inspectable characteristic or quality aspect assessed during an inspection."@en ,
+                                 "Prüfbares Merkmal oder Qualitätsaspekt, der während einer Prüfung bewertet wird."@de ;
+                    rdfs:label "Merkmal"@de .
+
+
+###  https://w3id.org/ocqa#Conformity
+ocqa:Conformity rdf:type owl:Class ;
+                rdfs:subClassOf ocqa:Evaluation ;
+                rdfs:comment "Bewertungsergebnis, das angibt, dass das Prüfungsobjekt dem geforderten Zustand entspricht."@de ,
+                             "Evaluation result stating that the inspection object conforms to the required condition."@en ;
+                rdfs:label "Konformität"@de .
+
+
+###  https://w3id.org/ocqa#Evaluation
+ocqa:Evaluation rdf:type owl:Class ;
+                rdfs:comment "Assessment result produced during or after an inspection."@en ,
+                             "Bewertungsergebnis, das während oder nach einer Prüfung erzeugt wird."@de ;
+                rdfs:label "Bewertung"@de .
+
+
+###  https://w3id.org/ocqa#ExternalResource
+ocqa:ExternalResource rdf:type owl:Class ;
+                      rdfs:subClassOf :Documentation ;
+                      rdfs:comment "Documentation resource hosted outside the ontology dataset, for example a linked document."@en ,
+                                   "Dokumentationsressource, die außerhalb des Ontologiedatensatzes gehostet wird, zum Beispiel ein verlinktes Dokument."@de ;
+                      rdfs:label "Externe Ressource"@de .
+
+
+###  https://w3id.org/ocqa#Image
+ocqa:Image rdf:type owl:Class ;
+           rdfs:subClassOf :Documentation ;
+           rdfs:comment "Bild, das als Prüfungsdokumentation verwendet wird."@de ,
+                        "Image used as inspection documentation."@en ;
+           rdfs:label "Bild"@de .
+
+
+###  https://w3id.org/ocqa#Inspection
+ocqa:Inspection rdf:type owl:Class ;
+                rdfs:comment "Inspection activity carried out to assess a bridge component or related object."@en ,
+                             "Prüfungsaktivität, die durchgeführt wird, um ein Brückenbauteil oder ein verwandtes Objekt zu bewerten."@de ;
+                rdfs:label "Prüfung"@de .
+
+
+###  https://w3id.org/ocqa#InspectionEquipment
+ocqa:InspectionEquipment rdf:type owl:Class ;
+                         rdfs:comment "Ausrüstung, die zur Durchführung einer Prüfung verwendet wird."@de ,
+                                      "Equipment used to perform an inspection."@en ;
+                         rdfs:label "Prüfungsausrüstung"@de .
+
+
+###  https://w3id.org/ocqa#InspectionProcedure
+ocqa:InspectionProcedure rdf:type owl:Class ;
+                         rdfs:comment "Procedure or method applied during an inspection."@en ,
+                                      "Verfahren oder Methode, das bzw. die während einer Prüfung angewendet wird."@de ;
+                         rdfs:label "Prüfungsverfahren"@de .
+
+
+###  https://w3id.org/ocqa#Inspector
+ocqa:Inspector rdf:type owl:Class ;
+               rdfs:comment "Person responsible for carrying out or supervising an inspection."@en ,
+                            "Person, die für die Durchführung oder Überwachung einer Prüfung verantwortlich ist."@de ;
+               rdfs:label "Inspektor"@de .
+
+
+###  https://w3id.org/ocqa#Nonconformity
+ocqa:Nonconformity rdf:type owl:Class ;
+                   rdfs:subClassOf ocqa:Evaluation ;
+                   rdfs:comment "Bewertungsergebnis, das eine festgestellte Abweichung, einen Mangel oder einen Schaden beschreibt."@de ,
+                                "Evaluation result describing a detected deficiency, defect, or damage."@en ;
+                   rdfs:label "Nichtkonformität"@de .
+
+
+###  https://w3id.org/ocqa#Video
+ocqa:Video rdf:type owl:Class ;
+           rdfs:subClassOf :Documentation ;
+           rdfs:comment "Video used as inspection documentation."@en ,
+                        "Video, das als Prüfungsdokumentation verwendet wird."@de ;
+           rdfs:label "Video"@de .
+
+
+###  https://w3id.org/ocqa/regulation#DIN-Norm
+ocqa-reg:DIN-Norm rdf:type owl:Class ;
+                  rdfs:subClassOf ocqa-reg:Norm ;
+                  rdfs:comment "Class for standards published in the DIN standardization framework."@en ,
+                               "Klasse für Normen, die im DIN-Normungsrahmen veröffentlicht werden."@de ;
+                  rdfs:label "DIN-Norm"@de .
+
+
+###  https://w3id.org/ocqa/regulation#Guideline
+ocqa-reg:Guideline rdf:type owl:Class ;
+                   rdfs:subClassOf :Regulation ;
+                   rdfs:comment "Guideline that governs or supports bridge inspection activities."@en ,
+                                "Richtlinie, die Brückenprüfungen regelt oder unterstützt."@de ;
+                   rdfs:label "Richtlinie"@de .
+
+
+###  https://w3id.org/ocqa/regulation#Norm
+ocqa-reg:Norm rdf:type owl:Class ;
+              rdfs:subClassOf :Regulation ;
+              rdfs:comment "Normative document that specifies requirements or recommended practice."@en ,
+                           "Normatives Dokument, das Anforderungen oder empfohlene Praxis festlegt."@de ;
+              rdfs:label "Norm"@de .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  https://w3id.org/brio#ActualCrackWidth01
+:ActualCrackWidth01 rdf:type owl:NamedIndividual ,
+                             ocqa:ActualCharacteristicValue ;
+                    :hasUnit "mm" ;
+                    :hasValue "0.08"^^xsd:double ;
+                    rdfs:comment "Gemessener Rissbreitenwert für das erste Rissbreitenmerkmal."@de ,
+                                 "Measured crack width value for the first crack-width characteristic."@en ;
+                    rdfs:label "Tatsächliche Rissbreite 01"@de .
+
+
+###  https://w3id.org/brio#ActualCrackWidth02
+:ActualCrackWidth02 rdf:type owl:NamedIndividual ,
+                             ocqa:ActualCharacteristicValue ;
+                    :hasUnit "mm" ;
+                    :hasValue "0.18"^^xsd:double ;
+                    rdfs:comment "Gemessener Rissbreitenwert für das zweite Rissbreitenmerkmal."@de ,
+                                 "Measured crack width value for the second crack-width characteristic."@en ;
+                    rdfs:label "Tatsächliche Rissbreite 02"@de .
+
+
+###  https://w3id.org/brio#AssignedMaxCrackWidth
+:AssignedMaxCrackWidth rdf:type owl:NamedIndividual ,
+                                ocqa:AssignedCharacteristicValue ;
+                       :hasMaxValue "0.1"^^xsd:double ;
+                       :hasUnit "mm" ;
+                       rdfs:comment "Assigned maximum allowable crack width used as reference value."@en ,
+                                    "Vorgegebene maximal zulässige Rissbreite, die als Referenzwert verwendet wird."@de ;
+                       rdfs:label "Vorgegebene maximale Rissbreite"@de .
+
+
+###  https://w3id.org/brio#BasketTruck
+:BasketTruck rdf:type owl:NamedIndividual ,
+                      :BridgeAccessEquipment ;
+             :equipmentID "A1-65" ;
+             :equipmentName "Basket truck orange" ;
+             rdfs:comment "Bridge access equipment represented by an orange basket truck."@en ,
+                          "Brückenzugangsausrüstung in Form eines orangefarbenen Hubkorbfahrzeugs."@de ;
+             rdfs:label "Hubkorbfahrzeug"@de .
+
+
+###  https://w3id.org/brio#CrackWidth01
+:CrackWidth01 rdf:type owl:NamedIndividual ,
+                       ocqa:Characteristic ;
+              rdfs:comment "Erstes Rissbreitenmerkmal, das in der Prüfung bewertet wird."@de ,
+                           "First crack-width characteristic evaluated in the inspection."@en ;
+              rdfs:label "Rissbreite 01"@de .
+
+
+###  https://w3id.org/brio#CrackWidth02
+:CrackWidth02 rdf:type owl:NamedIndividual ,
+                       ocqa:Characteristic ;
+              rdfs:comment "Second crack-width characteristic evaluated in the inspection."@en ,
+                           "Zweites Rissbreitenmerkmal, das in der Prüfung bewertet wird."@de ;
+              rdfs:label "Rissbreite 02"@de .
+
+
+###  https://w3id.org/brio#CrackWidthGauge
+:CrackWidthGauge rdf:type owl:NamedIndividual ,
+                          :BridgeInspectionEquipment ;
+                 :equipmentID "I600-02" ;
+                 rdfs:comment "Inspection equipment used to measure crack width."@en ,
+                              "Prüfungsausrüstung zur Messung der Rissbreite."@de ;
+                 rdfs:label "Rissbreitenmesser"@de .
+
+
+###  https://w3id.org/brio#CrackWidthMeasurement
+:CrackWidthMeasurement rdf:type owl:NamedIndividual ,
+                                ocqa:InspectionProcedure ;
+                       rdfs:comment "Inspection procedure used to measure crack width."@en ,
+                                    "Prüfungsverfahren zur Messung der Rissbreite."@de ;
+                       rdfs:label "Rissbreitenmessung"@de .
+
+
+###  https://w3id.org/brio#D_Schrute
+:D_Schrute rdf:type owl:NamedIndividual ,
+                    ocqa:Inspector ;
+           rdfs:comment "Inspector participating in the example inspection."@en ,
+                        "Inspektor, der an der Beispielprüfung beteiligt ist."@de ;
+           rdfs:label "D. Schrute"@de .
+
+
+###  https://w3id.org/brio#Damage669-Crack
+:Damage669-Crack rdf:type owl:NamedIndividual ,
+                          ocqa:Nonconformity ;
+                 :damageID "BSP-ID 669-S2-01" ;
+                 :description "Side surface, concrete, entire component, crack width 0.1 < 0.2 mm, downstream" ;
+                 :hasDurabilityRating "1.0"^^xsd:double ;
+                 :hasStructuralRating "0.0"^^xsd:double ;
+                 :hasTrafficSafetyRating "0.0"^^xsd:double ;
+                 rdfs:comment "Erfasster Rissschaden, der während der Beispielprüfung festgestellt wurde."@de ,
+                              "Recorded crack damage identified during the example inspection."@en ;
+                 rdfs:label "Schaden 669 Riss"@de .
+
+
+###  https://w3id.org/brio#DamageInspection
+:DamageInspection rdf:type owl:NamedIndividual ,
+                           :BridgeInspectionType ;
+                  :inspectionFrequency "After an event" ;
+                  :inspectionScope "An Inspection after specific events (e.g. natural disasters, impact) that could damage one or several bridge components" ;
+                  rdfs:comment "Inspection type performed after an event or when damage is suspected."@en ,
+                               "Prüfungstyp, der nach einem Ereignis oder bei vermutetem Schaden durchgeführt wird."@de ;
+                  rdfs:label "Schadensprüfung"@de .
+
+
+###  https://w3id.org/brio#In-depthInspection
+:In-depthInspection rdf:type owl:NamedIndividual ,
+                             :BridgeInspectionType ;
+                    :inspectionFrequency "Every 6 years" ;
+                    :inspectionScope "Detailed and hands-on inspection of all bridge components; access equipment and non-destructive equipment are required" ;
+                    rdfs:comment "Inspection type representing a detailed and hands-on bridge inspection."@en ,
+                                 "Prüfungstyp für eine detaillierte und handnahe Brückenprüfung."@de ;
+                    rdfs:label "Eingehende Prüfung"@de .
+
+
+###  https://w3id.org/brio#Insp_Girder_S3_InnerSurface_2021
+:Insp_Girder_S3_InnerSurface_2021 rdf:type owl:NamedIndividual ,
+                                           :BridgeConcreteComponentInspection ;
+                                  :hasInspectionType :RoutineInspection ;
+                                  rdfs:comment "Beispielhafte Prüfungsinstanz für die Innenoberfläche von Träger S3 im Jahr 2021."@de ,
+                                               "Example inspection instance for the inner surface of girder S3 in 2021."@en ;
+                                  rdfs:label "Prüfung Träger S3 Innenoberfläche 2021"@de .
+
+
+###  https://w3id.org/brio#Insp_Girder_S3_OuterSurface_2018
+:Insp_Girder_S3_OuterSurface_2018 rdf:type owl:NamedIndividual ,
+                                           :BridgeConcreteComponentInspection ;
+                                  :accessibility "complex" ;
+                                  :quantity "94.15 m" ;
+                                  :recommendation "Damage repair required in the medium term" ;
+                                  rdfs:comment "Beispielhafte Prüfungsinstanz für die Außenoberfläche von Träger S3 im Jahr 2018."@de ,
+                                               "Example inspection instance for the outer surface of girder S3 in 2018."@en ;
+                                  rdfs:label "Prüfung Träger S3 Außenoberfläche 2018"@de .
+
+
+###  https://w3id.org/brio#InventoryInspection
+:InventoryInspection rdf:type owl:NamedIndividual ,
+                              :BridgeInspectionType ;
+                     :inspectionFrequency "At beginning of operation" ;
+                     :inspectionScope "Baseline condition assessment of a bridge at the beginning of its operation, hands-on inspection of all bridge components" ;
+                     rdfs:comment "Inspection type performed at the beginning of bridge operation."@en ,
+                                  "Prüfungstyp, der zu Beginn des Brückenbetriebs durchgeführt wird."@de ;
+                     rdfs:label "Erstprüfung"@de .
+
+
+###  https://w3id.org/brio#M_Scott
+:M_Scott rdf:type owl:NamedIndividual ,
+                  ocqa:Inspector ;
+         rdfs:comment "Inspector participating in the example inspection."@en ,
+                      "Inspektor, der an der Beispielprüfung beteiligt ist."@de ;
+         rdfs:label "M. Scott"@de .
+
+
+###  https://w3id.org/brio#RoutineInspection
+:RoutineInspection rdf:type owl:NamedIndividual ,
+                            :BridgeInspectionType ;
+                   :inspectionFrequency "Every 3 years" ;
+                   :inspectionScope "Regularly scheduled visual inspection of accessible bridge components, access equipment is not necessary" ;
+                   rdfs:comment "Inspection type representing a regular scheduled visual inspection."@en ,
+                                "Prüfungstyp für eine regelmäßig geplante Sichtprüfung."@de ;
+                   rdfs:label "Regelprüfung"@de .
+
+
+###  https://w3id.org/brio#SpecialInspection
+:SpecialInspection rdf:type owl:NamedIndividual ,
+                            :BridgeInspectionType ;
+                   :inspectionFrequency "When requested" ;
+                   :inspectionScope "An additional inspection required for known or suspected deficiencies; e.g., underwater inspection, post-tension strand investigation, fatigue investigation, seismic investigation, bridge component with advance deterioration" ;
+                   rdfs:comment "Inspection type for special cases that require additional targeted inspection."@en ,
+                                "Prüfungstyp für Sonderfälle, die eine zusätzliche gezielte Prüfung erfordern."@de ;
+                   rdfs:label "Sonderprüfung"@de .
+
+
+###  https://w3id.org/brio#TrafficSafety01
+:TrafficSafety01 rdf:type owl:NamedIndividual ,
+                          :TrafficSafetyMeasure ;
+                 :description "Traffic cone" ;
+                 rdfs:comment "Beispielhafte Verkehrssicherungsmaßnahme, die während der Prüfung eingesetzt wird."@de ,
+                              "Example traffic safety measure used during the inspection."@en ;
+                 rdfs:label "Traffic safety measure 01"@en ,
+                            "Verkehrssicherungsmaßnahme 01"@de .
+
+
+###  https://w3id.org/brio#2018S3_Damage_669-02
+<https://w3id.org/brio#2018S3_Damage_669-02> rdf:type owl:NamedIndividual ,
+                                                      ocqa:Image ;
+                                             rdfs:comment "Placeholder individual for damage-related documentation in the example case."@en ,
+                                                          "Platzhalter-Individuum für schadensbezogene Dokumentation im Beispiel."@de ;
+                                             rdfs:label "Damage image 2018 S3 669-02"@en ,
+                                                        "Schadensbild 2018 S3 669-02"@de .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :DamageInspection
+                        :In-depthInspection
+                        :InventoryInspection
+                        :RoutineInspection
+                        :SpecialInspection
+                      )
+] .
+
+
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi

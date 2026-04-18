@@ -1,0 +1,536 @@
+@prefix : <http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix brio: <http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#> .
+@prefix dicp: <https://w3id.org/digitalconstruction/0.5/Processes#> .
+@prefix ocqa: <https://w3id.org/ocqa#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ocqa-reg: <https://w3id.org/ocqa/regulation#> .
+@prefix bridge_inspection: <http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#> .
+@base <http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection> .
+
+<http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection> rdf:type owl:Ontology ;
+                                                                          rdfs:comment "Ontology for bridge inspection planning and inspection data management" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#hasInspectionType
+bridge_inspection:hasInspectionType rdf:type owl:ObjectProperty ;
+                                    rdfs:domain bridge_inspection:BridgeComponentInspection ;
+                                    rdfs:range bridge_inspection:BridgeInspectionType .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#hasInspector
+bridge_inspection:hasInspector rdf:type owl:ObjectProperty ;
+                               rdfs:domain ocqa:Inspection ;
+                               rdfs:range ocqa:Inspector .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#preceeds
+bridge_inspection:preceeds rdf:type owl:ObjectProperty ;
+                           rdfs:domain bridge_inspection:PreparatoryMeasure ;
+                           rdfs:range ocqa:Inspection .
+
+
+###  https://w3id.org/ocqa#hasActualCharacteristic
+ocqa:hasActualCharacteristic rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/ocqa#hasAssignedCharacteristicValue
+ocqa:hasAssignedCharacteristicValue rdf:type owl:ObjectProperty ;
+                                    rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  https://w3id.org/ocqa#hasDocumentation
+ocqa:hasDocumentation rdf:type owl:ObjectProperty ;
+                      rdfs:domain ocqa:Evaluation ,
+                                  ocqa:Inspection ;
+                      rdfs:range bridge_inspection:Documentation .
+
+
+###  https://w3id.org/ocqa#hasInspCharacteristic
+ocqa:hasInspCharacteristic rdf:type owl:ObjectProperty .
+
+
+###  https://w3id.org/ocqa#hasInspection
+ocqa:hasInspection rdf:type owl:ObjectProperty ;
+                   rdfs:range ocqa:Inspection .
+
+
+###  https://w3id.org/ocqa#hasInspectionEquipment
+ocqa:hasInspectionEquipment rdf:type owl:ObjectProperty ;
+                            rdfs:domain ocqa:Inspection ;
+                            rdfs:range ocqa:InspectionEquipment .
+
+
+###  https://w3id.org/ocqa#hasInspectionProcedure
+ocqa:hasInspectionProcedure rdf:type owl:ObjectProperty ;
+                            rdfs:domain ocqa:Inspection ;
+                            rdfs:range ocqa:InspectionProcedure .
+
+
+###  https://w3id.org/ocqa#hasRecord
+ocqa:hasRecord rdf:type owl:ObjectProperty ;
+               rdfs:domain ocqa:Inspection ;
+               rdfs:range ocqa:Evaluation .
+
+
+###  https://w3id.org/ocqa/regulation#requiredby
+ocqa-reg:requiredby rdf:type owl:ObjectProperty ;
+                    rdfs:domain ocqa:Inspection ;
+                    rdfs:range bridge_inspection:Regulation .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#accessibility
+bridge_inspection:accessibility rdf:type owl:DatatypeProperty ;
+                                rdfs:domain bridge_inspection:BridgeComponentInspection ;
+                                rdfs:range xsd:string ;
+                                rdfs:comment "Easy accessibility of a bridge component for a hands-on inspection (true, false)." .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#damageID
+bridge_inspection:damageID rdf:type owl:DatatypeProperty ;
+                           rdfs:domain ocqa:Nonconformity ;
+                           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#description
+bridge_inspection:description rdf:type owl:DatatypeProperty ;
+                              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#environment
+bridge_inspection:environment rdf:type owl:DatatypeProperty ;
+                              rdfs:domain bridge_inspection:BridgeComponentInspection ;
+                              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#equipmentID
+bridge_inspection:equipmentID rdf:type owl:DatatypeProperty ;
+                              rdfs:domain ocqa:InspectionEquipment .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#equipmentName
+bridge_inspection:equipmentName rdf:type owl:DatatypeProperty ;
+                                rdfs:subPropertyOf owl:topDataProperty ;
+                                rdfs:domain ocqa:InspectionEquipment .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#hasDurabilityRating
+bridge_inspection:hasDurabilityRating rdf:type owl:DatatypeProperty ;
+                                      rdfs:domain ocqa:Nonconformity ;
+                                      rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#hasMaxValue
+bridge_inspection:hasMaxValue rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#hasStructuralRating
+bridge_inspection:hasStructuralRating rdf:type owl:DatatypeProperty ;
+                                      rdfs:domain ocqa:Nonconformity ;
+                                      rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#hasTrafficSafetyRating
+bridge_inspection:hasTrafficSafetyRating rdf:type owl:DatatypeProperty ;
+                                         rdfs:domain ocqa:Nonconformity ;
+                                         rdfs:range xsd:double .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#hasUnit
+bridge_inspection:hasUnit rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#hasValue
+bridge_inspection:hasValue rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#inspectionFrequency
+bridge_inspection:inspectionFrequency rdf:type owl:DatatypeProperty ;
+                                      rdfs:domain bridge_inspection:BridgeInspectionType .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#inspectionScope
+bridge_inspection:inspectionScope rdf:type owl:DatatypeProperty ;
+                                  rdfs:subPropertyOf owl:topDataProperty ;
+                                  rdfs:domain bridge_inspection:BridgeInspectionType ;
+                                  rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#quantity
+bridge_inspection:quantity rdf:type owl:DatatypeProperty ;
+                           rdfs:domain bridge_inspection:BridgeComponentInspection ;
+                           rdfs:range xsd:string ;
+                           rdfs:comment "Quantity inspected of a bridge component (e.g., m, m2)" .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#recommendation
+bridge_inspection:recommendation rdf:type owl:DatatypeProperty ;
+                                 rdfs:domain bridge_inspection:BridgeComponentInspection ;
+                                 rdfs:range xsd:string ;
+                                 rdfs:comment "Recommendations for a bridge component after an inspection" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#AASHTO-Manual
+bridge_inspection:AASHTO-Manual rdf:type owl:Class ;
+                                rdfs:subClassOf ocqa-reg:Guideline .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#AccessMeasure
+bridge_inspection:AccessMeasure rdf:type owl:Class ;
+                                rdfs:subClassOf bridge_inspection:PreparatoryMeasure .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeAccessEquipment
+bridge_inspection:BridgeAccessEquipment rdf:type owl:Class ;
+                                        rdfs:subClassOf ocqa:InspectionEquipment .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeAttachementInspection
+bridge_inspection:BridgeAttachementInspection rdf:type owl:Class ;
+                                              rdfs:subClassOf bridge_inspection:Sub-componentInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeBearingInspection
+bridge_inspection:BridgeBearingInspection rdf:type owl:Class ;
+                                          rdfs:subClassOf bridge_inspection:Sub-componentInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeComponentInspection
+bridge_inspection:BridgeComponentInspection rdf:type owl:Class ;
+                                            rdfs:subClassOf ocqa:Inspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeConcreteComponentInspection
+bridge_inspection:BridgeConcreteComponentInspection rdf:type owl:Class ;
+                                                    rdfs:subClassOf bridge_inspection:Material-basedInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeDrainageSystemInspection
+bridge_inspection:BridgeDrainageSystemInspection rdf:type owl:Class ;
+                                                 rdfs:subClassOf bridge_inspection:Sub-componentInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeFoundationInspection
+bridge_inspection:BridgeFoundationInspection rdf:type owl:Class ;
+                                             rdfs:subClassOf bridge_inspection:Sub-componentInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeInspectionEquipment
+bridge_inspection:BridgeInspectionEquipment rdf:type owl:Class ;
+                                            rdfs:subClassOf ocqa:InspectionEquipment .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeInspectionType
+bridge_inspection:BridgeInspectionType rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeJointInspection
+bridge_inspection:BridgeJointInspection rdf:type owl:Class ;
+                                        rdfs:subClassOf bridge_inspection:Sub-componentInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeMasonryComponentInspection
+bridge_inspection:BridgeMasonryComponentInspection rdf:type owl:Class ;
+                                                   rdfs:subClassOf bridge_inspection:Material-basedInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeRailingSystemInspection
+bridge_inspection:BridgeRailingSystemInspection rdf:type owl:Class ;
+                                                rdfs:subClassOf bridge_inspection:Sub-componentInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeSteelCoatingInspection
+bridge_inspection:BridgeSteelCoatingInspection rdf:type owl:Class ;
+                                               rdfs:subClassOf bridge_inspection:Sub-componentInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeSteelStructureInspection
+bridge_inspection:BridgeSteelStructureInspection rdf:type owl:Class ;
+                                                 rdfs:subClassOf bridge_inspection:Material-basedInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeTimberStructureInspection
+bridge_inspection:BridgeTimberStructureInspection rdf:type owl:Class ;
+                                                  rdfs:subClassOf bridge_inspection:Material-basedInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BridgeWearingSurfaceInspection
+bridge_inspection:BridgeWearingSurfaceInspection rdf:type owl:Class ;
+                                                 rdfs:subClassOf bridge_inspection:Sub-componentInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#DestructiveTestingEquipment
+bridge_inspection:DestructiveTestingEquipment rdf:type owl:Class ;
+                                              rdfs:subClassOf ocqa:InspectionEquipment .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#Documentation
+bridge_inspection:Documentation rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#Material-basedInspection
+bridge_inspection:Material-basedInspection rdf:type owl:Class ;
+                                           rdfs:subClassOf bridge_inspection:BridgeComponentInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#Non-destructiveTestingEquipment
+bridge_inspection:Non-destructiveTestingEquipment rdf:type owl:Class ;
+                                                  rdfs:subClassOf ocqa:InspectionEquipment .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#PreparatoryMeasure
+bridge_inspection:PreparatoryMeasure rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#Regulation
+bridge_inspection:Regulation rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#SiteInspection
+bridge_inspection:SiteInspection rdf:type owl:Class ;
+                                 rdfs:subClassOf bridge_inspection:BridgeComponentInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#Sub-componentInspection
+bridge_inspection:Sub-componentInspection rdf:type owl:Class ;
+                                          rdfs:subClassOf bridge_inspection:BridgeComponentInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#TrafficSafetyMeasure
+bridge_inspection:TrafficSafetyMeasure rdf:type owl:Class ;
+                                       rdfs:subClassOf bridge_inspection:PreparatoryMeasure .
+
+
+###  https://w3id.org/ocqa#ActualCharacteristicValue
+ocqa:ActualCharacteristicValue rdf:type owl:Class ;
+                               owl:disjointWith ocqa:AssignedCharacteristicValue .
+
+
+###  https://w3id.org/ocqa#AssignedCharacteristicValue
+ocqa:AssignedCharacteristicValue rdf:type owl:Class .
+
+
+###  https://w3id.org/ocqa#Characteristic
+ocqa:Characteristic rdf:type owl:Class .
+
+
+###  https://w3id.org/ocqa#Conformity
+ocqa:Conformity rdf:type owl:Class ;
+                rdfs:subClassOf ocqa:Evaluation .
+
+
+###  https://w3id.org/ocqa#Evaluation
+ocqa:Evaluation rdf:type owl:Class .
+
+
+###  https://w3id.org/ocqa#ExternalResource
+ocqa:ExternalResource rdf:type owl:Class ;
+                      rdfs:subClassOf bridge_inspection:Documentation .
+
+
+###  https://w3id.org/ocqa#Image
+ocqa:Image rdf:type owl:Class ;
+           rdfs:subClassOf bridge_inspection:Documentation .
+
+
+###  https://w3id.org/ocqa#Inspection
+ocqa:Inspection rdf:type owl:Class .
+
+
+###  https://w3id.org/ocqa#InspectionEquipment
+ocqa:InspectionEquipment rdf:type owl:Class .
+
+
+###  https://w3id.org/ocqa#InspectionProcedure
+ocqa:InspectionProcedure rdf:type owl:Class .
+
+
+###  https://w3id.org/ocqa#Inspector
+ocqa:Inspector rdf:type owl:Class .
+
+
+###  https://w3id.org/ocqa#Nonconformity
+ocqa:Nonconformity rdf:type owl:Class ;
+                   rdfs:subClassOf ocqa:Evaluation .
+
+
+###  https://w3id.org/ocqa#Video
+ocqa:Video rdf:type owl:Class ;
+           rdfs:subClassOf bridge_inspection:Documentation .
+
+
+###  https://w3id.org/ocqa/regulation#DIN-Norm
+ocqa-reg:DIN-Norm rdf:type owl:Class ;
+                  rdfs:subClassOf ocqa-reg:Norm .
+
+
+###  https://w3id.org/ocqa/regulation#Guideline
+ocqa-reg:Guideline rdf:type owl:Class ;
+                   rdfs:subClassOf bridge_inspection:Regulation .
+
+
+###  https://w3id.org/ocqa/regulation#Norm
+ocqa-reg:Norm rdf:type owl:Class ;
+              rdfs:subClassOf bridge_inspection:Regulation .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#ActualCrackWidth01
+bridge_inspection:ActualCrackWidth01 rdf:type owl:NamedIndividual ,
+                                              ocqa:ActualCharacteristicValue ;
+                                     bridge_inspection:hasUnit "mm"^^xsd:string ;
+                                     bridge_inspection:hasValue "0.08"^^xsd:double .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#ActualCrackWidth02
+bridge_inspection:ActualCrackWidth02 rdf:type owl:NamedIndividual ,
+                                              ocqa:ActualCharacteristicValue ;
+                                     bridge_inspection:hasUnit "mm"^^xsd:string ;
+                                     bridge_inspection:hasValue "0.18"^^xsd:double .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#AssignedMaxCrackWidth
+bridge_inspection:AssignedMaxCrackWidth rdf:type owl:NamedIndividual ,
+                                                 ocqa:AssignedCharacteristicValue ;
+                                        bridge_inspection:hasMaxValue "0.1"^^xsd:double ;
+                                        bridge_inspection:hasUnit "mm"^^xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#BasketTruck
+bridge_inspection:BasketTruck rdf:type owl:NamedIndividual ,
+                                       bridge_inspection:BridgeAccessEquipment ;
+                              bridge_inspection:equipmentID "A1-65"^^xsd:string ;
+                              bridge_inspection:equipmentName "Basket truck orange"^^xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#CrackWidth01
+bridge_inspection:CrackWidth01 rdf:type owl:NamedIndividual ,
+                                        ocqa:Characteristic .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#CrackWidth02
+bridge_inspection:CrackWidth02 rdf:type owl:NamedIndividual ,
+                                        ocqa:Characteristic .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#CrackWidthGauge
+bridge_inspection:CrackWidthGauge rdf:type owl:NamedIndividual ,
+                                           bridge_inspection:BridgeInspectionEquipment ;
+                                  bridge_inspection:equipmentID "I600-02"^^xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#CrackWidthMeasurement
+bridge_inspection:CrackWidthMeasurement rdf:type owl:NamedIndividual ,
+                                                 ocqa:InspectionProcedure .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#D_Schrute
+bridge_inspection:D_Schrute rdf:type owl:NamedIndividual ,
+                                     ocqa:Inspector .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#Damage669-Crack
+bridge_inspection:Damage669-Crack rdf:type owl:NamedIndividual ,
+                                           ocqa:Nonconformity ;
+                                  bridge_inspection:damageID "BSP-ID 669-S2-01"^^xsd:string ;
+                                  bridge_inspection:description "Side surface, concrete, entire component, crack width 0.1 < 0.2 mm, downstream"^^xsd:string ;
+                                  bridge_inspection:hasDurabilityRating "1.0"^^xsd:double ;
+                                  bridge_inspection:hasStructuralRating "0.0"^^xsd:double ;
+                                  bridge_inspection:hasTrafficSafetyRating "0.0"^^xsd:double .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#DamageInspection
+bridge_inspection:DamageInspection rdf:type owl:NamedIndividual ,
+                                            bridge_inspection:BridgeInspectionType ;
+                                   bridge_inspection:inspectionFrequency "After an event"^^xsd:string ;
+                                   bridge_inspection:inspectionScope "An Inspection after specific events (e.g. natural disasters, impact) that could damage one or several bridge components"^^xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#In-depthInspection
+bridge_inspection:In-depthInspection rdf:type owl:NamedIndividual ,
+                                              bridge_inspection:BridgeInspectionType ;
+                                     bridge_inspection:inspectionFrequency "Every 6 years"^^xsd:string ;
+                                     bridge_inspection:inspectionScope "Detailed and hands-on inspection of all bridge components; access equipment and non-destructive equipment are required"^^xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#Insp_Girder_S3_InnerSurface_2021
+bridge_inspection:Insp_Girder_S3_InnerSurface_2021 rdf:type owl:NamedIndividual ,
+                                                            bridge_inspection:BridgeConcreteComponentInspection ;
+                                                   bridge_inspection:hasInspectionType bridge_inspection:RoutineInspection .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#Insp_Girder_S3_OuterSurface_2018
+bridge_inspection:Insp_Girder_S3_OuterSurface_2018 rdf:type owl:NamedIndividual ,
+                                                            bridge_inspection:BridgeConcreteComponentInspection ;
+                                                   bridge_inspection:accessibility "complex"^^xsd:string ;
+                                                   bridge_inspection:quantity "94.15 m"^^xsd:string ;
+                                                   bridge_inspection:recommendation "Damage repair required in the medium term"^^xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#InventoryInspection
+bridge_inspection:InventoryInspection rdf:type owl:NamedIndividual ,
+                                               bridge_inspection:BridgeInspectionType ;
+                                      bridge_inspection:inspectionFrequency "At beginning of operation"^^xsd:string ;
+                                      bridge_inspection:inspectionScope "Baseline condition assessment of a bridge at the beginning of its operation, hands-on inspection of all bridge components"^^xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#M_Scott
+bridge_inspection:M_Scott rdf:type owl:NamedIndividual ,
+                                   ocqa:Inspector .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#RoutineInspection
+bridge_inspection:RoutineInspection rdf:type owl:NamedIndividual ,
+                                             bridge_inspection:BridgeInspectionType ;
+                                    bridge_inspection:inspectionFrequency "Every 3 years"^^xsd:string ;
+                                    bridge_inspection:inspectionScope "Regularly scheduled visual inspection of accessible bridge components, access equipment is not necessary"^^xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#SpecialInspection
+bridge_inspection:SpecialInspection rdf:type owl:NamedIndividual ,
+                                             bridge_inspection:BridgeInspectionType ;
+                                    bridge_inspection:inspectionFrequency "When requested"^^xsd:string ;
+                                    bridge_inspection:inspectionScope "An additional inspection required for known or suspected deficiencies; e.g., underwater inspection, post-tension strand investigation, fatigue investigation, seismic investigation, bridge component with advance deterioration"^^xsd:string .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#TrafficSafety01
+bridge_inspection:TrafficSafety01 rdf:type owl:NamedIndividual ;
+                                  bridge_inspection:description "Traffic cone" .
+
+
+###  http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#2018S3_Damage_669-02
+<http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#2018S3_Damage_669-02> rdf:type owl:NamedIndividual .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( bridge_inspection:DamageInspection
+                        bridge_inspection:In-depthInspection
+                        bridge_inspection:InventoryInspection
+                        bridge_inspection:RoutineInspection
+                        bridge_inspection:SpecialInspection
+                      )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

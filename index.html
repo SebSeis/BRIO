@@ -1,0 +1,2799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BrIO ontology</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC40lEQVRYhe2UT0hUQRzHp6Iss1B3VZKIDbbdfW9mnoi4f3zzjkJQeOgS0SEIb1EWBGGlLLu460zQPQM1unUIIjA6rfpm6ZAhHjoIRVQUFUlEbG+euTsdXG1d3VL3bVD4g+9h+L35fT/8fvN7ADgY9aHY5fpIvK82HO9ysu66wxWOzbkjcekKx0a2ALYA/n2AGi3a6ArFezcidziecQygNhhrcUficjP6PwBqtGijKxy/thnVBePHywYoDsFhl53GV8SEcsTx4usCMLUewTVpc23BNvEzm6Neyf1+KcG2vwqwUjgrOJq2JmHftwmkVBRGTvncFodnbI7vChO/FRznCmHsNM7aHM9Yk7Df5iqsLMw9sMNOK2g+jS4IEz0UJv4iuJZb2RltWnB4UZqH6ioGAgAAGe5vtiZhtzDx7OoRadLmeM7m6IRjhnLMW2Vx1bA5GhAmnhIcz6/xNj4Ujsky8UspwfayjDPjsF2Y6L7N8Vzx/BfP+KPg6LbgSqd8DnfJW2CnbaLhfH5ephpqygJYvQU4Z3P82TLRsDDhUTnmrSq+Y3N0Mg+Xldy/zwEAnLMWZ3pHpNExmfLs/t0dOdVcbT0JeKxUwFP2VljjqiE47Jp53LTXNxhsUZjerTByXWX6VZWRs/4bIQ2ACv+UAomgDzLCISNZxAxZKMhIDjLy1JfsaK+I+eGBUBNk5E2x8RogX/PdcDZUqieWTSh5D6nOVKqfhoycUmlHFFIyu5RXqf7AcQDISCpv/tqbMBqK883RtmpISRoxQyJKPgGn3wNk5NEigDFa6hslqV/Kj+FdBQD0bshIDlKSLlVcoWQo36UhR80BAMB73lulMn0EMpJTqD6qJiOt3mho/8GbkT2BZNgDB/V+RI0fkOrT3kRIVQbaDizJm2hdNbINBxwk5xAj3yEjuV9rZ1iIkgxixkLBA83mz8uCjLwoGwAx0vOnFSy5mtR4VTaAQvVORMnwZgSpzkrV/QmdE2tKe46+MQAAAABJRU5ErkJggg==">
+    <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABhklEQVQ4jbWPzStEURjG3yQLirlGKUnKFO45Z+SjmXvnnmthQcpCoVhYmD/AwmJiI3OvZuZc2U3UlKU0/gAslMw9JgvhHxAr2fko7r0jHSsl+TgbTz2Lt5731/MASEiJW9ONml2QyX6rsGalmnT74v8BDf12hxJfpV8d1uwNKUBYszabdFv84L8B9X0rESVmmUup2fme0cVhJWaZHw4NWL1Sew
+EAfDe6H3Dy6Ll456WEJsRZS630MwCAOI20ei5OBpxse5zcBZw8eS4uPpfIuDiCainIg9umBCU0GZzgLZ9Hn31OgoATL+CkLDGB5H1OKj4nFd/FBxUXJ0UZNb4edw/6nLyJXaj5FeCVyPLNIVmYK8TG1IwWb16L1gEACAFV90ftoT8bdOX0EeyY99gxBXZMgRz6qGb1KantAACI0UvE6F5XJqEjpsdURouI0Vt5gGOUkUNnPu7ObGIIMfNaGqDmjDRi9FZldF1lRgYzeqUyeoiY4ag5Iy3RgOYRM8+/M2bG8efsO4hGrpmJseyMAAAAAElFTkSuQmCC">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    
+    <style>
+        #pylode {
+            position: fixed;
+            top: 130px;
+            left: -60px;
+            font-size: small;
+            transform: rotate(-90deg);
+            color: grey;
+        }
+        #pylode a {
+            font-size: 2em;
+            font-weight: bold;
+            text-decoration: none;
+            color: #005A9C;
+        }
+        #pylode a:hover {
+            color: #333;
+        }
+
+        .cardinality {
+            font-style: italic;
+            color: #aa00aa;
+        }
+
+        dt {
+            font-weight: bold;
+            padding: 5px 0 5px 0;
+        }
+
+        ul.hlist {
+            list-style-type: none;
+            border: 1px solid navy;
+            padding:5px;
+            background-color: #F4FFFF;
+        }
+
+        ul.hierarchy {
+            border: 1px solid navy;
+            padding: 5px 25px 5px 25px;
+            background-color: #F4FFFF;
+        }
+
+
+        ul.hlist li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .entity {
+            border: 1px solid navy;
+            margin:5px 0 5px 0;
+            padding: 5px;
+        }
+
+        .entity th {
+            width: 150px;
+            vertical-align: top;
+        }
+
+        .entity th,
+        .entity td {
+            padding-bottom: 20px;
+        }
+
+        .entity table th {
+            text-align: left;
+        }
+
+        section#overview img {
+            max-width: 1000px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-align: left
+        }
+        h1, h2, h3 {
+            color: #005A9C; background: white
+        }
+        h1 {
+            font: 170% sans-serif;
+            line-height: 110%;
+        }
+        h2 {
+            font: 140% sans-serif;
+            margin-top:40px;
+        }
+        h3 {
+            font: 120% sans-serif;
+            margin-top: 3px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid navy;
+        }
+        h4 { font: bold 100% sans-serif }
+        h5 { font: italic 100% sans-serif }
+        h6 { font: small-caps 100% sans-serif }
+
+
+        body {
+            padding: 2em 70px 2em 70px;
+            margin: 0;
+            font-family: sans-serif;
+            color: black;
+            background: white;
+            background-position: top left;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            text-align: justify;
+        }
+
+        section {
+            max-width: 1500px;
+        }
+
+        .figure {
+            margin-bottom: 20px;
+        }
+
+        :link { color: #00C; background: transparent }
+        :visited { color: #609; background: transparent }
+        a:active { color: #C00; background: transparent }
+
+        .sup-c,
+        .sup-op,
+        .sup-fp,
+        .sup-dp,
+        .sup-ap,
+        .sup-p,
+        .sup-ni,
+        .sup-con,
+        .sup-col {
+            cursor:help;
+            margin-left: 3px;
+        }
+
+        .sup-c {
+            color:orange;
+        }
+
+        .sup-op {
+            color:navy;
+        }
+
+        .sup-fp {
+            color:lightskyblue;
+        }
+
+        .sup-dp {
+            color:green;
+        }
+
+        .sup-ap {
+            color:darkred;
+        }
+
+        .sup-p {
+            color:black;
+        }
+
+        .sup-ni {
+            color:brown;
+        }
+
+        .sup-con {
+            color:orange;
+        }
+
+        .sup-col {
+            color:darkred;
+        }
+
+        code {
+            font-size: large;
+            color: darkred;
+        }
+
+        /* less prominent links for properties */
+        .proplink {
+            color: #336;
+            text-decoration: none;
+        }
+    </style>
+    
+    <script type="application/ld+json">
+      [
+  {
+    "@id": "https://w3id.org/brio",
+    "@type": [
+      "https://schema.org/DefinedTermSet"
+    ],
+    "https://schema.org/description": [
+      {
+        "@value": "<p>Ontology for bridge inspection planning and bridge inspection data management.</p>"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "BrIO ontology"
+      }
+    ]
+  }
+]
+    </script>
+</head>
+<body>
+  <div id="pylode">made by <a href="http://github.com/rdflib/pyLODE">
+    <span style="color:#329545;">p</span><span style="color:#f9cb33;">y</span>LODE</a>
+    <span style="font-size:smaller;">2.13.2</span>
+  </div>
+  <h1>BrIO ontology</h1>
+<section id="metadata">
+    <h2 style="display:none;">Metadata</h2>
+    <dl>
+        <dt>URI</dt>
+        <dd><code>https://w3id.org/brio</code></dd>
+        <dt>Version Information</dt>
+        <dd>0.1.1</dd>
+        <dt>Version URI</dt>
+        <dd><a href="https://w3id.org/brio/0.1.1">https://w3id.org/brio/0.1.1</a></dd>
+        <dt>Ontology RDF</dt>
+        <dd><a href="c:\Users\Seiss_Consultant\OneDrive\Dokumentumok\GitHub\BRIO\BrIO.ttl">RDF (turtle)</a></dd>
+    </dl>
+    <h2>Description</h2>
+    <div id="description">
+        <p>Ontology for bridge inspection planning and bridge inspection data management.</p>
+    </div>
+</section>
+<section id="toc">
+    <h2>Table of Contents</h2>
+    <ol>
+        <li><a href="#overview">Classes</a></li>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#objectproperties">Object Properties</a></li>
+        <li><a href="#datatypeproperties">Datatype Properties</a></li>
+        <li><a href="#annotationproperties">Annotation Properties</a></li>
+        <li><a href="#namedindividuals">Named Individuals</a></li>
+        <li><a href="#namespaces">Namespaces</a></li>
+        <li><a href="#legend">Legend</a></li>
+    </ol>
+</section>
+<section id="overview">
+    <h2>Overview</h2>
+    <div class="figure">
+        <div style="width:500px; height:50px; background-color: lightgrey; border:solid 2px grey; padding:10px;margin-bottom:5px; text-align:center;">Pictures say 1,000 words</div>
+        <div class="caption"><strong>Figure 1:</strong> Ontology overview</div>
+    </div>
+</section>
+  <section id="classes">
+    <h2>Classes <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+      <li><a href="#AASHTO-Manual">AASHTO-Manual</a></li>
+      <li><a href="#AccessMeasure">AccessMeasure</a></li>
+      <li><a href="#BridgeAccessEquipment">BridgeAccessEquipment</a></li>
+      <li><a href="#bridgeattachmentinspection(deprecated)">bridge attachment inspection (deprecated)</a></li>
+      <li><a href="#bridgeattachmentinspection">bridge attachment inspection</a></li>
+      <li><a href="#BridgeBearingInspection">BridgeBearingInspection</a></li>
+      <li><a href="#BridgeComponentInspection">BridgeComponentInspection</a></li>
+      <li><a href="#BridgeConcreteComponentInspection">BridgeConcreteComponentInspection</a></li>
+      <li><a href="#BridgeDrainageSystemInspection">BridgeDrainageSystemInspection</a></li>
+      <li><a href="#BridgeFoundationInspection">BridgeFoundationInspection</a></li>
+      <li><a href="#BridgeInspectionEquipment">BridgeInspectionEquipment</a></li>
+      <li><a href="#BridgeInspectionType">BridgeInspectionType</a></li>
+      <li><a href="#BridgeJointInspection">BridgeJointInspection</a></li>
+      <li><a href="#BridgeMasonryComponentInspection">BridgeMasonryComponentInspection</a></li>
+      <li><a href="#BridgeRailingSystemInspection">BridgeRailingSystemInspection</a></li>
+      <li><a href="#BridgeSteelCoatingInspection">BridgeSteelCoatingInspection</a></li>
+      <li><a href="#BridgeSteelStructureInspection">BridgeSteelStructureInspection</a></li>
+      <li><a href="#BridgeTimberStructureInspection">BridgeTimberStructureInspection</a></li>
+      <li><a href="#BridgeWearingSurfaceInspection">BridgeWearingSurfaceInspection</a></li>
+      <li><a href="#DestructiveTestingEquipment">DestructiveTestingEquipment</a></li>
+      <li><a href="#Documentation">Documentation</a></li>
+      <li><a href="#Material-basedInspection">Material-basedInspection</a></li>
+      <li><a href="#Non-destructiveTestingEquipment">Non-destructiveTestingEquipment</a></li>
+      <li><a href="#PreparatoryMeasure">PreparatoryMeasure</a></li>
+      <li><a href="#Regulation">Regulation</a></li>
+      <li><a href="#SiteInspection">SiteInspection</a></li>
+      <li><a href="#Sub-componentInspection">Sub-componentInspection</a></li>
+      <li><a href="#TrafficSafetyMeasure">TrafficSafetyMeasure</a></li>
+      <li><a href="https://w3id.org/ocqa#ActualCharacteristicValue">ocqa:ActualCharacteristicValue</a></li>
+      <li><a href="https://w3id.org/ocqa#AssignedCharacteristicValue">ocqa:AssignedCharacteristicValue</a></li>
+      <li><a href="https://w3id.org/ocqa#Characteristic">ocqa:Characteristic</a></li>
+      <li><a href="https://w3id.org/ocqa#Conformity">ocqa:Conformity</a></li>
+      <li><a href="https://w3id.org/ocqa#Evaluation">ocqa:Evaluation</a></li>
+      <li><a href="https://w3id.org/ocqa#ExternalResource">ocqa:ExternalResource</a></li>
+      <li><a href="https://w3id.org/ocqa#Image">ocqa:Image</a></li>
+      <li><a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a></li>
+      <li><a href="https://w3id.org/ocqa#InspectionEquipment">ocqa:InspectionEquipment</a></li>
+      <li><a href="https://w3id.org/ocqa#InspectionProcedure">ocqa:InspectionProcedure</a></li>
+      <li><a href="https://w3id.org/ocqa#Inspector">ocqa:Inspector</a></li>
+      <li><a href="https://w3id.org/ocqa#Nonconformity">ocqa:Nonconformity</a></li>
+      <li><a href="https://w3id.org/ocqa#Video">ocqa:Video</a></li>
+      <li><a href="https://w3id.org/ocqa/regulation#DIN-Norm">ocqa-reg:DIN-Norm</a></li>
+      <li><a href="https://w3id.org/ocqa/regulation#Guideline">ocqa-reg:Guideline</a></li>
+      <li><a href="https://w3id.org/ocqa/regulation#Norm">ocqa-reg:Norm</a></li>
+    </ul>
+    <div class="entity class" id="AASHTO-Manual">
+        <h3>
+          AASHTO-Manual<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#AASHTO-Manual" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#AASHTO-Manual</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Class for AASHTO manuals used as bridge inspection guidelines.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa/regulation#Guideline">ocqa-reg:Guideline</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="AccessMeasure">
+        <h3>
+          AccessMeasure<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#AccessMeasure" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#AccessMeasure</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Preparatory measure required to obtain physical access to the inspection object.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#PreparatoryMeasure">PreparatoryMeasure</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeAccessEquipment">
+        <h3>
+          BridgeAccessEquipment<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeAccessEquipment" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeAccessEquipment</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection equipment used to access bridge components, for example a basket truck or under-bridge unit.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#InspectionEquipment">ocqa:InspectionEquipment</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="bridgeattachmentinspection(deprecated)">
+        <h3>
+          bridge attachment inspection (deprecated)<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#bridgeattachmentinspection(deprecated)" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeAttachementInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Deprecated misspelled class IRI. Use brio:BridgeAttachmentInspection instead.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Sub-componentInspection">Sub-componentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="bridgeattachmentinspection">
+        <h3>
+          bridge attachment inspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#bridgeattachmentinspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeAttachmentInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of attached bridge elements such as mounted devices or accessories.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Sub-componentInspection">Sub-componentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeBearingInspection">
+        <h3>
+          BridgeBearingInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeBearingInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeBearingInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of bridge bearings.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Sub-componentInspection">Sub-componentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeComponentInspection">
+        <h3>
+          BridgeComponentInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeComponentInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeComponentInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection that targets a bridge component or a specific part of a bridge component.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#Sub-componentInspection">Sub-componentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#SiteInspection">SiteInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Material-basedInspection">Material-basedInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="#accessibility">accessibility</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#environment">environment</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#hasInspectionType">hasInspectionType</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="#recommendation">recommendation</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#quantity">quantity</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeConcreteComponentInspection">
+        <h3>
+          BridgeConcreteComponentInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeConcreteComponentInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeConcreteComponentInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of bridge components made of concrete.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Material-basedInspection">Material-basedInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeDrainageSystemInspection">
+        <h3>
+          BridgeDrainageSystemInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeDrainageSystemInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeDrainageSystemInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of the bridge drainage system.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Sub-componentInspection">Sub-componentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeFoundationInspection">
+        <h3>
+          BridgeFoundationInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeFoundationInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeFoundationInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of bridge foundation elements.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Sub-componentInspection">Sub-componentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeInspectionEquipment">
+        <h3>
+          BridgeInspectionEquipment<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeInspectionEquipment" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeInspectionEquipment</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection equipment specifically used for bridge inspection tasks.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#InspectionEquipment">ocqa:InspectionEquipment</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://w3id.org/brio#CrackWidthGauge">CrackWidthGauge</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeInspectionType">
+        <h3>
+          BridgeInspectionType<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeInspectionType" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeInspectionType</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Type or category of a bridge inspection, for example routine or in-depth inspection.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="#inspectionScope">inspectionScope</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#inspectionFrequency">inspectionFrequency</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="#hasInspectionType">hasInspectionType</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://w3id.org/brio#In-depthInspection">In-depthInspection</a><br/>
+                    <a href="https://w3id.org/brio#RoutineInspection">RoutineInspection</a><br/>
+                    <a href="https://w3id.org/brio#DamageInspection">DamageInspection</a><br/>
+                    <a href="https://w3id.org/brio#SpecialInspection">SpecialInspection</a><br/>
+                    <a href="https://w3id.org/brio#InventoryInspection">InventoryInspection</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeJointInspection">
+        <h3>
+          BridgeJointInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeJointInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeJointInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of bridge joints.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Sub-componentInspection">Sub-componentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeMasonryComponentInspection">
+        <h3>
+          BridgeMasonryComponentInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeMasonryComponentInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeMasonryComponentInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of bridge components made of masonry.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Material-basedInspection">Material-basedInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeRailingSystemInspection">
+        <h3>
+          BridgeRailingSystemInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeRailingSystemInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeRailingSystemInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of bridge railing systems.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Sub-componentInspection">Sub-componentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeSteelCoatingInspection">
+        <h3>
+          BridgeSteelCoatingInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeSteelCoatingInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeSteelCoatingInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of coatings on steel bridge components.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Sub-componentInspection">Sub-componentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeSteelStructureInspection">
+        <h3>
+          BridgeSteelStructureInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeSteelStructureInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeSteelStructureInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of steel bridge structures or steel bridge components.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Material-basedInspection">Material-basedInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeTimberStructureInspection">
+        <h3>
+          BridgeTimberStructureInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeTimberStructureInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeTimberStructureInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of timber bridge structures or timber bridge components.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Material-basedInspection">Material-basedInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="BridgeWearingSurfaceInspection">
+        <h3>
+          BridgeWearingSurfaceInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#BridgeWearingSurfaceInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#BridgeWearingSurfaceInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of the bridge wearing surface.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Sub-componentInspection">Sub-componentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="DestructiveTestingEquipment">
+        <h3>
+          DestructiveTestingEquipment<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#DestructiveTestingEquipment" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#DestructiveTestingEquipment</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection equipment used for destructive testing methods.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#InspectionEquipment">ocqa:InspectionEquipment</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Documentation">
+        <h3>
+          Documentation<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Documentation" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#Documentation</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Documentation resource created or used during an inspection or evaluation.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Image">ocqa:Image</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/ocqa#ExternalResource">ocqa:ExternalResource</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/ocqa#Video">ocqa:Video</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#hasDocumentation">ocqa:hasDocumentation</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Material-basedInspection">
+        <h3>
+          Material-basedInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Material-basedInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#Material-basedInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection category that groups inspections by material type of the inspected bridge component.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#BridgeComponentInspection">BridgeComponentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#BridgeMasonryComponentInspection">BridgeMasonryComponentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#BridgeSteelStructureInspection">BridgeSteelStructureInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#BridgeConcreteComponentInspection">BridgeConcreteComponentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#BridgeTimberStructureInspection">BridgeTimberStructureInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Non-destructiveTestingEquipment">
+        <h3>
+          Non-destructiveTestingEquipment<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Non-destructiveTestingEquipment" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#Non-destructiveTestingEquipment</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection equipment used for non-destructive testing methods.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#InspectionEquipment">ocqa:InspectionEquipment</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="PreparatoryMeasure">
+        <h3>
+          PreparatoryMeasure<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#PreparatoryMeasure" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#PreparatoryMeasure</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Measure that must be carried out before an inspection can be performed.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#TrafficSafetyMeasure">TrafficSafetyMeasure</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#AccessMeasure">AccessMeasure</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://w3id.org/digitalconstruction/0.5/Processes#precedes">dicp:precedes</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="#preceeds(deprecated)">preceeds (deprecated)</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Regulation">
+        <h3>
+          Regulation<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Regulation" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#Regulation</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Normative or regulatory document that governs bridge inspection activities.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa/regulation#Norm">ocqa-reg:Norm</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/ocqa/regulation#Guideline">ocqa-reg:Guideline</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://w3id.org/ocqa/regulation#requiredby">ocqa-reg:requiredby</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="https://w3id.org/ocqa/regulation#requiredBy">ocqa-reg:requiredBy</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="SiteInspection">
+        <h3>
+          SiteInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#SiteInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#SiteInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection performed directly on site at the bridge.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#BridgeComponentInspection">BridgeComponentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Sub-componentInspection">
+        <h3>
+          Sub-componentInspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Sub-componentInspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#Sub-componentInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection of a sub-component of a bridge component.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#BridgeComponentInspection">BridgeComponentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#BridgeSteelCoatingInspection">BridgeSteelCoatingInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#bridgeattachmentinspection(deprecated)">bridge attachment inspection (deprecated)</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#BridgeDrainageSystemInspection">BridgeDrainageSystemInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#BridgeRailingSystemInspection">BridgeRailingSystemInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#BridgeBearingInspection">BridgeBearingInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#BridgeFoundationInspection">BridgeFoundationInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#bridgeattachmentinspection">bridge attachment inspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#BridgeWearingSurfaceInspection">BridgeWearingSurfaceInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#BridgeJointInspection">BridgeJointInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="TrafficSafetyMeasure">
+        <h3>
+          TrafficSafetyMeasure<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#TrafficSafetyMeasure" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#TrafficSafetyMeasure</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Preparatory measure used to ensure traffic safety during an inspection.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#PreparatoryMeasure">PreparatoryMeasure</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="ActualCharacteristicValue">
+        <h3>
+          ActualCharacteristicValue<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#ActualCharacteristicValue" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#ActualCharacteristicValue</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Observed or measured value of an inspection characteristic.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="#hasValue">hasValue</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#hasActualCharacteristic">ocqa:hasActualCharacteristic</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="AssignedCharacteristicValue">
+        <h3>
+          AssignedCharacteristicValue<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#AssignedCharacteristicValue" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#AssignedCharacteristicValue</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Reference or target value assigned to an inspection characteristic.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="#hasMaxValue">hasMaxValue</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#hasAssignedCharacteristicValue">ocqa:hasAssignedCharacteristicValue</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://w3id.org/brio#AssignedMaxCrackWidth">AssignedMaxCrackWidth</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Characteristic">
+        <h3>
+          Characteristic<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Characteristic" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#Characteristic</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspectable characteristic or quality aspect assessed during an inspection.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#hasAssignedCharacteristicValue">ocqa:hasAssignedCharacteristicValue</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="https://w3id.org/ocqa#hasActualCharacteristic">ocqa:hasActualCharacteristic</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#hasInspCharacteristic">ocqa:hasInspCharacteristic</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Conformity">
+        <h3>
+          Conformity<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Conformity" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#Conformity</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Evaluation result stating that the inspection object conforms to the required condition.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Evaluation">ocqa:Evaluation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Evaluation">
+        <h3>
+          Evaluation<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Evaluation" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#Evaluation</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Assessment result produced during or after an inspection.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Nonconformity">ocqa:Nonconformity</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="https://w3id.org/ocqa#Conformity">ocqa:Conformity</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#hasRecord">ocqa:hasRecord</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="ExternalResource">
+        <h3>
+          ExternalResource<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#ExternalResource" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#ExternalResource</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Documentation resource hosted outside the ontology dataset, for example a linked document.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Documentation">Documentation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Image">
+        <h3>
+          Image<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Image" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#Image</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Image used as inspection documentation.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Documentation">Documentation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Inspection">
+        <h3>
+          Inspection<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Inspection" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#Inspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Inspection activity carried out to assess a bridge component or related object.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#BridgeComponentInspection">BridgeComponentInspection</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="https://w3id.org/ocqa/regulation#requiredby">ocqa-reg:requiredby</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="https://w3id.org/ocqa#hasInspectionEquipment">ocqa:hasInspectionEquipment</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="https://w3id.org/ocqa#hasInspCharacteristic">ocqa:hasInspCharacteristic</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="https://w3id.org/ocqa#hasInspectionProcedure">ocqa:hasInspectionProcedure</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="https://w3id.org/ocqa/regulation#requiredBy">ocqa-reg:requiredBy</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="#hasInspector">hasInspector</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="https://w3id.org/ocqa#hasRecord">ocqa:hasRecord</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://w3id.org/digitalconstruction/0.5/Processes#precedes">dicp:precedes</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="#preceeds(deprecated)">preceeds (deprecated)</a><sup class="sup-op" title="object property">op</sup><br/>
+                    <a href="https://w3id.org/ocqa#hasInspection">ocqa:hasInspection</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="InspectionEquipment">
+        <h3>
+          InspectionEquipment<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#InspectionEquipment" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#InspectionEquipment</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Equipment used to perform an inspection.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#DestructiveTestingEquipment">DestructiveTestingEquipment</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#BridgeInspectionEquipment">BridgeInspectionEquipment</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#BridgeAccessEquipment">BridgeAccessEquipment</a><sup class="sup-c" title="class">c</sup><br/>
+                    <a href="#Non-destructiveTestingEquipment">Non-destructiveTestingEquipment</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="#equipmentName">equipmentName</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#equipmentID">equipmentID</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#hasInspectionEquipment">ocqa:hasInspectionEquipment</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="InspectionProcedure">
+        <h3>
+          InspectionProcedure<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#InspectionProcedure" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#InspectionProcedure</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Procedure or method applied during an inspection.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#hasInspectionProcedure">ocqa:hasInspectionProcedure</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Members</th>
+                <td>
+                    <a href="https://w3id.org/brio#CrackWidthMeasurement">CrackWidthMeasurement</a><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Inspector">
+        <h3>
+          Inspector<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Inspector" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#Inspector</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Person responsible for carrying out or supervising an inspection.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>In range of</th>
+                <td>
+                    <a href="#hasInspector">hasInspector</a><sup class="sup-op" title="object property">op</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Nonconformity">
+        <h3>
+          Nonconformity<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Nonconformity" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#Nonconformity</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Evaluation result describing a detected deficiency, defect, or damage.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Evaluation">ocqa:Evaluation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>In domain of</th>
+                <td>
+                    <a href="#hasDurabilityRating">hasDurabilityRating</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#hasTrafficSafetyRating">hasTrafficSafetyRating</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#hasStructuralRating">hasStructuralRating</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                    <a href="#damageID">damageID</a><sup class="sup-dp" title="datatype property">dp</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Video">
+        <h3>
+          Video<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Video" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#Video</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Video used as inspection documentation.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Documentation">Documentation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="DIN-Norm">
+        <h3>
+          DIN-Norm<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#DIN-Norm" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa/regulation#DIN-Norm</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Class for standards published in the DIN standardization framework.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa/regulation#Norm">ocqa-reg:Norm</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Guideline">
+        <h3>
+          Guideline<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Guideline" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa/regulation#Guideline</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Guideline that governs or supports bridge inspection activities.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Regulation">Regulation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="#AASHTO-Manual">AASHTO-Manual</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity class" id="Norm">
+        <h3>
+          Norm<sup title="class" class="sup-c">c</sup>
+          <span style="float:right; margin-right:10px; font-size:smaller;"><a href="#Norm" title="fragment link to here">#</a> <a href="#classes" title="Classes Index">Classes</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa/regulation#Norm</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Normative document that specifies requirements or recommended practice.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Super-classes</th>
+                <td>
+                    <a href="#Regulation">Regulation</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+            <tr>
+                <th>Sub-classes</th>
+                <td>
+                    <a href="https://w3id.org/ocqa/regulation#DIN-Norm">ocqa-reg:DIN-Norm</a><sup class="sup-c" title="class">c</sup><br/>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+<section id="objectproperties">
+    <h2>Object Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#hasInspectionType">hasInspectionType</a></li>
+        <li><a href="#hasInspector">hasInspector</a></li>
+        <li><a href="#preceeds(deprecated)">preceeds (deprecated)</a></li>
+        <li><a href="#precedes">precedes</a></li>
+        <li><a href="#hasActualCharacteristic">hasActualCharacteristic</a></li>
+        <li><a href="#hasAssignedCharacteristicValue">hasAssignedCharacteristicValue</a></li>
+        <li><a href="#hasDocumentation">hasDocumentation</a></li>
+        <li><a href="#hasInspCharacteristic">hasInspCharacteristic</a></li>
+        <li><a href="#hasInspection">hasInspection</a></li>
+        <li><a href="#hasInspectionEquipment">hasInspectionEquipment</a></li>
+        <li><a href="#hasInspectionProcedure">hasInspectionProcedure</a></li>
+        <li><a href="#hasRecord">hasRecord</a></li>
+        <li><a href="#requiredby">required by</a></li>
+        <li><a href="#requiredby(deprecated)">requiredby (deprecated)</a></li>
+    </ul>
+    <div class="entity property" id="hasInspectionType">
+        <h3>hasInspectionType<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasInspectionType" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#hasInspectionType</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Relates an inspection to its inspection type.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#BridgeComponentInspection">BridgeComponentInspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/brio#BridgeInspectionType">BridgeInspectionType</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasInspector">
+        <h3>hasInspector<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasInspector" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#hasInspector</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Relates an inspection to the responsible inspector.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Inspector">ocqa:Inspector</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="preceeds(deprecated)">
+        <h3>preceeds (deprecated)<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#preceeds(deprecated)" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#preceeds</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Deprecated misspelled property IRI. Use dicp:precedes instead.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Equivalent properties</th>
+                <td>
+                    <a href="https://w3id.org/digitalconstruction/0.5/Processes#precedes">dicp:precedes</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#PreparatoryMeasure">PreparatoryMeasure</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="precedes">
+        <h3>precedes<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#precedes" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/digitalconstruction/0.5/Processes#precedes</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Relates a preparatory measure to an inspection that it precedes.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#PreparatoryMeasure">PreparatoryMeasure</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasActualCharacteristic">
+        <h3>hasActualCharacteristic<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasActualCharacteristic" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#hasActualCharacteristic</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Relates a characteristic to its observed or measured actual value.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Characteristic">ocqa:Characteristic</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#ActualCharacteristicValue">ocqa:ActualCharacteristicValue</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasAssignedCharacteristicValue">
+        <h3>hasAssignedCharacteristicValue<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasAssignedCharacteristicValue" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#hasAssignedCharacteristicValue</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Relates a characteristic to its assigned reference or target value.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Characteristic">ocqa:Characteristic</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#AssignedCharacteristicValue">ocqa:AssignedCharacteristicValue</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasDocumentation">
+        <h3>hasDocumentation<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasDocumentation" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#hasDocumentation</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Relates an inspection or evaluation to documentation such as images, videos, or external resources.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    (<a href="https://w3id.org/ocqa#Evaluation">ocqa:Evaluation</a><sup class="sup-c" title="class">c</sup> or <a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a><sup class="sup-c" title="class">c</sup>)
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/brio#Documentation">Documentation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasInspCharacteristic">
+        <h3>hasInspCharacteristic<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasInspCharacteristic" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#hasInspCharacteristic</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Relates an inspection to the characteristics that are evaluated in that inspection.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Characteristic">ocqa:Characteristic</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasInspection">
+        <h3>hasInspection<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasInspection" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#hasInspection</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Relates a resource to an inspection.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasInspectionEquipment">
+        <h3>hasInspectionEquipment<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasInspectionEquipment" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#hasInspectionEquipment</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Relates an inspection to the equipment used to perform it.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#InspectionEquipment">ocqa:InspectionEquipment</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasInspectionProcedure">
+        <h3>hasInspectionProcedure<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasInspectionProcedure" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#hasInspectionProcedure</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Relates an inspection to the procedure applied during the inspection.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#InspectionProcedure">ocqa:InspectionProcedure</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasRecord">
+        <h3>hasRecord<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasRecord" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa#hasRecord</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Relates an inspection to an evaluation result that records a finding.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Evaluation">ocqa:Evaluation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="requiredby">
+        <h3>required by<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#requiredby" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa/regulation#requiredBy</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Links an inspection to the regulation that requires or defines it.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Equivalent properties</th>
+                <td>
+                    <a href="https://w3id.org/ocqa/regulation#requiredby">ocqa-reg:requiredby</a><sup class="sup-op" title="object property">op</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/brio#Regulation">Regulation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="requiredby(deprecated)">
+        <h3>requiredby (deprecated)<sup title="object property" class="sup-op">op</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#requiredby(deprecated)" title="fragment link to here">#</a>&nbsp;<a href="#objectproperties" title="Object Properties Index">OPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/ocqa/regulation#requiredby</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Deprecated property with non-standard casing. Use ocqa-reg:requiredBy instead.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Inspection">ocqa:Inspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="https://w3id.org/brio#Regulation">Regulation</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section id="datatypeproperties">
+    <h2>Datatype Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#accessibility">accessibility</a></li>
+        <li><a href="#damageID">damageID</a></li>
+        <li><a href="#description">description</a></li>
+        <li><a href="#environment">environment</a></li>
+        <li><a href="#equipmentID">equipmentID</a></li>
+        <li><a href="#equipmentName">equipmentName</a></li>
+        <li><a href="#hasDurabilityRating">hasDurabilityRating</a></li>
+        <li><a href="#hasMaxValue">hasMaxValue</a></li>
+        <li><a href="#hasStructuralRating">hasStructuralRating</a></li>
+        <li><a href="#hasTrafficSafetyRating">hasTrafficSafetyRating</a></li>
+        <li><a href="#hasUnit">hasUnit</a></li>
+        <li><a href="#hasValue">hasValue</a></li>
+        <li><a href="#inspectionFrequency">inspectionFrequency</a></li>
+        <li><a href="#inspectionScope">inspectionScope</a></li>
+        <li><a href="#quantity">quantity</a></li>
+        <li><a href="#recommendation">recommendation</a></li>
+    </ul>
+    <div class="entity property" id="accessibility">
+        <h3>accessibility<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#accessibility" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#accessibility</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Qualitative accessibility of a bridge component for inspection, for example easy, limited, or complex.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#BridgeComponentInspection">BridgeComponentInspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="damageID">
+        <h3>damageID<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#damageID" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#damageID</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Identifier assigned to a detected nonconformity or damage.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Nonconformity">ocqa:Nonconformity</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="description">
+        <h3>description<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#description" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#description</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Textual description of a resource.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="environment">
+        <h3>environment<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#environment" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#environment</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Environmental context relevant to the inspection.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#BridgeComponentInspection">BridgeComponentInspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="equipmentID">
+        <h3>equipmentID<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#equipmentID" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#equipmentID</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Identifier assigned to a piece of inspection equipment.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#InspectionEquipment">ocqa:InspectionEquipment</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="equipmentName">
+        <h3>equipmentName<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#equipmentName" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#equipmentName</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Human-readable name of a piece of inspection equipment.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#InspectionEquipment">ocqa:InspectionEquipment</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasDurabilityRating">
+        <h3>hasDurabilityRating<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasDurabilityRating" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#hasDurabilityRating</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Numeric rating that expresses the durability impact of a detected nonconformity.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Nonconformity">ocqa:Nonconformity</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasMaxValue">
+        <h3>hasMaxValue<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasMaxValue" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#hasMaxValue</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Maximum allowed or assigned value for a characteristic value specification.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#AssignedCharacteristicValue">ocqa:AssignedCharacteristicValue</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasStructuralRating">
+        <h3>hasStructuralRating<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasStructuralRating" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#hasStructuralRating</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Numeric rating that expresses the structural impact of a detected nonconformity.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Nonconformity">ocqa:Nonconformity</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasTrafficSafetyRating">
+        <h3>hasTrafficSafetyRating<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasTrafficSafetyRating" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#hasTrafficSafetyRating</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Numeric rating that expresses the traffic-safety impact of a detected nonconformity.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#Nonconformity">ocqa:Nonconformity</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasUnit">
+        <h3>hasUnit<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasUnit" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#hasUnit</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Unit associated with a measured or assigned value.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    (<a href="https://w3id.org/ocqa#ActualCharacteristicValue">ocqa:ActualCharacteristicValue</a><sup class="sup-c" title="class">c</sup> or <a href="https://w3id.org/ocqa#AssignedCharacteristicValue">ocqa:AssignedCharacteristicValue</a><sup class="sup-c" title="class">c</sup>)
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="hasValue">
+        <h3>hasValue<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#hasValue" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#hasValue</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Observed numeric value of a characteristic value resource.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="https://w3id.org/ocqa#ActualCharacteristicValue">ocqa:ActualCharacteristicValue</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#double">xsd:double</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="inspectionFrequency">
+        <h3>inspectionFrequency<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#inspectionFrequency" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#inspectionFrequency</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Frequency statement for an inspection type. In this version it is represented as a string.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#BridgeInspectionType">BridgeInspectionType</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="inspectionScope">
+        <h3>inspectionScope<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#inspectionScope" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#inspectionScope</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Textual description of the scope of an inspection type.</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#BridgeInspectionType">BridgeInspectionType</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="quantity">
+        <h3>quantity<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#quantity" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#quantity</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Quantity inspected of a bridge component (e.g., m, m2)</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#BridgeComponentInspection">BridgeComponentInspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="recommendation">
+        <h3>recommendation<sup title="datatype property" class="sup-dp">dp</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#recommendation" title="fragment link to here">#</a>&nbsp;<a href="#datatypeproperties" title="Datatype Properties Index">DPs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>https://w3id.org/brio#recommendation</code></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>
+                    <p>Recommendations for a bridge component after an inspection</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Domain(s)</th>
+                <td>
+                    <a href="#BridgeComponentInspection">BridgeComponentInspection</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+            <tr>
+                <th>Range(s)</th>
+                <td>
+                    <a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a><sup class="sup-c" title="class">c</sup>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+<section id="annotationproperties">
+    <h2>Annotation Properties <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <ul class="hlist">
+        <li><a href="#editor">editor</a></li>
+        <li><a href="#title">title</a></li>
+        <li><a href="#preferredNamespacePrefix">preferredNamespacePrefix</a></li>
+        <li><a href="#preferredNamespaceUri">preferredNamespaceUri</a></li>
+    </ul>
+    <div class="entity property" id="editor">
+        <h3>editor<sup title="annotation property" class="sup-ap">ap</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#editor" title="fragment link to here">#</a>&nbsp;<a href="#annotationproperties" title="Annotation Properties Index">APs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://purl.org/dc/terms/editor</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="title">
+        <h3>title<sup title="annotation property" class="sup-ap">ap</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#title" title="fragment link to here">#</a>&nbsp;<a href="#annotationproperties" title="Annotation Properties Index">APs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://purl.org/dc/terms/title</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="preferredNamespacePrefix">
+        <h3>preferredNamespacePrefix<sup title="annotation property" class="sup-ap">ap</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#preferredNamespacePrefix" title="fragment link to here">#</a>&nbsp;<a href="#annotationproperties" title="Annotation Properties Index">APs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://purl.org/vocab/vann/preferredNamespacePrefix</code></td>
+            </tr>
+        </table>
+    </div>
+    <div class="entity property" id="preferredNamespaceUri">
+        <h3>preferredNamespaceUri<sup title="annotation property" class="sup-ap">ap</sup><span style="float:right; margin-right:10px; font-size:smaller;">
+            <a href="#preferredNamespaceUri" title="fragment link to here">#</a>&nbsp;<a href="#annotationproperties" title="Annotation Properties Index">APs</a></span>
+        </h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td><code>http://purl.org/vocab/vann/preferredNamespaceUri</code></td>
+            </tr>
+        </table>
+    </div>
+</section>
+
+  
+    <section id="namedindividuals">
+        <h2>Named Individuals <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+        <ul class="hlist">
+            <li><a href="#AssignedMaxCrackWidth">AssignedMaxCrackWidth</a></li>
+            <li><a href="#CrackWidthGauge">CrackWidthGauge</a></li>
+            <li><a href="#CrackWidthMeasurement">CrackWidthMeasurement</a></li>
+            <li><a href="#DamageInspection">DamageInspection</a></li>
+            <li><a href="#In-depthInspection">In-depthInspection</a></li>
+            <li><a href="#InventoryInspection">InventoryInspection</a></li>
+            <li><a href="#RoutineInspection">RoutineInspection</a></li>
+            <li><a href="#SpecialInspection">SpecialInspection</a></li>
+        </ul>
+            <div class="entity named_individual" id="AssignedMaxCrackWidth">
+        <h3>AssignedMaxCrackWidth<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://w3id.org/brio#AssignedMaxCrackWidth
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://w3id.org/ocqa#AssignedCharacteristicValue">ocqa:AssignedCharacteristicValue</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Assigned maximum allowable crack width used as reference value.
+                </td>
+            </tr>
+        </table>
+    </div>
+            <div class="entity named_individual" id="CrackWidthGauge">
+        <h3>CrackWidthGauge<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://w3id.org/brio#CrackWidthGauge
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://w3id.org/brio#BridgeInspectionEquipment">BridgeInspectionEquipment</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Inspection equipment used to measure crack width.
+                </td>
+            </tr>
+        </table>
+    </div>
+            <div class="entity named_individual" id="CrackWidthMeasurement">
+        <h3>CrackWidthMeasurement<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://w3id.org/brio#CrackWidthMeasurement
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://w3id.org/ocqa#InspectionProcedure">ocqa:InspectionProcedure</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Inspection procedure used to measure crack width.
+                </td>
+            </tr>
+        </table>
+    </div>
+            <div class="entity named_individual" id="DamageInspection">
+        <h3>DamageInspection<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://w3id.org/brio#DamageInspection
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://w3id.org/brio#BridgeInspectionType">BridgeInspectionType</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Inspection type performed after an event or when damage is suspected.
+                </td>
+            </tr>
+        </table>
+    </div>
+            <div class="entity named_individual" id="In-depthInspection">
+        <h3>In-depthInspection<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://w3id.org/brio#In-depthInspection
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://w3id.org/brio#BridgeInspectionType">BridgeInspectionType</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Inspection type representing a detailed and hands-on bridge inspection.
+                </td>
+            </tr>
+        </table>
+    </div>
+            <div class="entity named_individual" id="InventoryInspection">
+        <h3>InventoryInspection<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://w3id.org/brio#InventoryInspection
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://w3id.org/brio#BridgeInspectionType">BridgeInspectionType</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Inspection type performed at the beginning of bridge operation.
+                </td>
+            </tr>
+        </table>
+    </div>
+            <div class="entity named_individual" id="RoutineInspection">
+        <h3>RoutineInspection<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://w3id.org/brio#RoutineInspection
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://w3id.org/brio#BridgeInspectionType">BridgeInspectionType</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Inspection type representing a regular scheduled visual inspection.
+                </td>
+            </tr>
+        </table>
+    </div>
+            <div class="entity named_individual" id="SpecialInspection">
+        <h3>SpecialInspection<sup title="named individual" class="sup-ni">ni</sup></h3>
+        <table>
+            <tr>
+                <th>URI</th>
+                <td>
+                  <code>
+                      https://w3id.org/brio#SpecialInspection
+                  
+                  </code>
+                </td>
+            </tr>
+            <dt>Class(es)</dt>
+            <dd>
+                <a href="https://w3id.org/brio#BridgeInspectionType">BridgeInspectionType</a><br/>
+            </dd>
+            <tr>
+                <th>Description</th>
+                <td>
+                    Inspection type for special cases that require additional targeted inspection.
+                </td>
+            </tr>
+        </table>
+    </div>
+    </section>
+
+  <section id="namespaces">
+    <h2>Namespaces <span style="float:right; font-size:smaller;"><a href="">&uparrow;</a></span></h2>
+    <dl>
+        <dt>default (brio)</dt>
+        <dd><code>https://w3id.org/brio#</code></dd>
+        <dt>brick</dt>
+        <dd><code>https://brickschema.org/schema/Brick#</code></dd>
+        <dt>csvw</dt>
+        <dd><code>http://www.w3.org/ns/csvw#</code></dd>
+        <dt>dc</dt>
+        <dd><code>http://purl.org/dc/elements/1.1/</code></dd>
+        <dt>dcam</dt>
+        <dd><code>http://purl.org/dc/dcam/</code></dd>
+        <dt>dcat</dt>
+        <dd><code>http://www.w3.org/ns/dcat#</code></dd>
+        <dt>dcmitype</dt>
+        <dd><code>http://purl.org/dc/dcmitype/</code></dd>
+        <dt>dcterms</dt>
+        <dd><code>http://purl.org/dc/terms/</code></dd>
+        <dt>dicp</dt>
+        <dd><code>https://w3id.org/digitalconstruction/0.5/Processes#</code></dd>
+        <dt>doap</dt>
+        <dd><code>http://usefulinc.com/ns/doap#</code></dd>
+        <dt>foaf</dt>
+        <dd><code>http://xmlns.com/foaf/0.1/</code></dd>
+        <dt>geo</dt>
+        <dd><code>http://www.opengis.net/ont/geosparql#</code></dd>
+        <dt>ocqa</dt>
+        <dd><code>https://w3id.org/ocqa#</code></dd>
+        <dt>ocqa-reg</dt>
+        <dd><code>https://w3id.org/ocqa/regulation#</code></dd>
+        <dt>odrl</dt>
+        <dd><code>http://www.w3.org/ns/odrl/2/</code></dd>
+        <dt>org</dt>
+        <dd><code>http://www.w3.org/ns/org#</code></dd>
+        <dt>owl</dt>
+        <dd><code>http://www.w3.org/2002/07/owl#</code></dd>
+        <dt>prof</dt>
+        <dd><code>http://www.w3.org/ns/dx/prof/</code></dd>
+        <dt>prov</dt>
+        <dd><code>http://www.w3.org/ns/prov#</code></dd>
+        <dt>qb</dt>
+        <dd><code>http://purl.org/linked-data/cube#</code></dd>
+        <dt>rdf</dt>
+        <dd><code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code></dd>
+        <dt>rdfs</dt>
+        <dd><code>http://www.w3.org/2000/01/rdf-schema#</code></dd>
+        <dt>sdo</dt>
+        <dd><code>https://schema.org/</code></dd>
+        <dt>sh</dt>
+        <dd><code>http://www.w3.org/ns/shacl#</code></dd>
+        <dt>skos</dt>
+        <dd><code>http://www.w3.org/2004/02/skos/core#</code></dd>
+        <dt>sosa</dt>
+        <dd><code>http://www.w3.org/ns/sosa/</code></dd>
+        <dt>ssn</dt>
+        <dd><code>http://www.w3.org/ns/ssn/</code></dd>
+        <dt>time</dt>
+        <dd><code>http://www.w3.org/2006/time#</code></dd>
+        <dt>vann</dt>
+        <dd><code>http://purl.org/vocab/vann/</code></dd>
+        <dt>void</dt>
+        <dd><code>http://rdfs.org/ns/void#</code></dd>
+        <dt>wgs</dt>
+        <dd><code>https://www.w3.org/2003/01/geo/wgs84_pos#</code></dd>
+        <dt>xsd</dt>
+        <dd><code>http://www.w3.org/2001/XMLSchema#</code></dd>
+    </dl>
+</section>
+  <section id="legend">
+      <h2>Legend</h2>
+      <table class="entity">
+          <tr><td><sup class="sup-c" title="Classes">c</sup></td><td>Classes</td></tr>
+          <tr><td><sup class="sup-op" title="Object Properties">op</sup></td><td>Object Properties</td></tr>
+          <tr><td><sup class="sup-fp" title="Functional Properties">fp</sup></td><td>Functional Properties</td></tr>
+          <tr><td><sup class="sup-dp" title="Data Properties">dp</sup></td><td>Data Properties</td></tr>
+          <tr><td><sup class="sup-ap" title="Annotation Properties">ap</sup></td><td>Annotation Properties</td></tr>
+          <tr><td><sup class="sup-p" title="Properties">p</sup></td><td>Properties</td></tr>
+          <tr><td><sup class="sup-ni" title="Named Individuals">ni</sup></td><td>Named Individuals</td></tr>
+      </table>
+  </section>
+</body>
+</html>

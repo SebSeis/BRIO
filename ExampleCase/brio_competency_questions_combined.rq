@@ -1,0 +1,146 @@
+PREFIX : <http://example.org/brio/example-case#>
+PREFIX brio: <http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#>
+PREFIX dicp: <https://w3id.org/digitalconstruction/0.5/Processes#>
+PREFIX ocqa: <https://w3id.org/ocqa#>
+PREFIX ocqa-reg: <https://w3id.org/ocqa/regulation#>
+PREFIX brima: <http://example.org/bridge-management#>
+PREFIX dice: <http://example.org/digitalconstruction/entities#>
+
+SELECT
+  ?inspectionName
+  ?inspectionObject
+  ?inspectionClass
+  ?inspectionType
+  ?startDate
+  ?endDate
+  ?responsibleInspectors
+  ?inspectionCharacteristics
+  ?assignedCharacteristicLimit
+  ?regulation
+  ?equipment
+  ?nonconformities
+  ?damageIds
+  ?damageAreaLocation
+  ?conditionRating
+  ?nextInspection
+  ?nextInspectionStart
+  ?nextInspectionEnd
+WHERE {
+  VALUES ?inspection { :Insp_Girder_S3_OuterSurface_2018 }
+
+  BIND(REPLACE(STR(?inspection), "^.*[#/]", "") AS ?inspectionName)
+
+  ?inspection a brio:BridgeConcreteComponentInspection .
+  BIND("BridgeConcreteComponentInspection" AS ?inspectionClass)
+
+  OPTIONAL {
+    ?inspection brio:hasInspectionType ?inspectionTypeIri .
+    BIND(REPLACE(STR(?inspectionTypeIri), "^.*[#/]", "") AS ?inspectionType)
+  }
+
+  OPTIONAL {
+    ?inspection dicp:occupiesTimeInterval ?interval .
+    ?interval dice:hasStart ?startDate ;
+              dice:hasEnd ?endDate .
+  }
+
+  OPTIONAL {
+    ?inspection ocqa:hasInspectionObject ?component .
+    BIND(REPLACE(STR(?component), "^.*[#/]", "") AS ?inspectionObject)
+
+    OPTIONAL {
+      ?component brima:hasConditionAssessment ?conditionAssessment .
+      ?conditionAssessment brima:conditionRating ?conditionRating .
+    }
+  }
+
+  OPTIONAL {
+    SELECT ?inspection (GROUP_CONCAT(DISTINCT ?inspectorName; separator=", ") AS ?responsibleInspectors)
+    WHERE {
+      ?inspector ocqa:isResponsibleFor ?inspection .
+      BIND(REPLACE(STR(?inspector), "^.*[#/]", "") AS ?inspectorName)
+    }
+    GROUP BY ?inspection
+  }
+
+  OPTIONAL {
+    SELECT ?inspection (GROUP_CONCAT(DISTINCT ?characteristicName; separator=", ") AS ?inspectionCharacteristics)
+    WHERE {
+      ?inspection ocqa:hasInspCharacteristic ?characteristic .
+      BIND(REPLACE(STR(?characteristic), "^.*[#/]", "") AS ?characteristicName)
+    }
+    GROUP BY ?inspection
+  }
+
+  OPTIONAL {
+    SELECT ?inspection (GROUP_CONCAT(DISTINCT ?limitText; separator=", ") AS ?assignedCharacteristicLimit)
+    WHERE {
+      ?inspection ocqa:hasInspCharacteristic ?characteristic .
+      ?characteristic ocqa:hasAssignedCharacteristicValue ?assignedLimit .
+      OPTIONAL { ?assignedLimit brio:hasMaxValue ?limitValue . }
+      OPTIONAL { ?assignedLimit brio:hasUnit ?limitUnit . }
+      BIND(CONCAT(REPLACE(STR(?assignedLimit), "^.*[#/]", ""), " = ", STR(?limitValue), " ", STR(?limitUnit)) AS ?limitText)
+    }
+    GROUP BY ?inspection
+  }
+
+  OPTIONAL {
+    SELECT ?inspection (GROUP_CONCAT(DISTINCT ?regulationName; separator=", ") AS ?regulation)
+    WHERE {
+      ?inspection (ocqa-reg:requiredBy|ocqa-reg:requiredby) ?regulationIri .
+      BIND(REPLACE(STR(?regulationIri), "^.*[#/]", "") AS ?regulationName)
+    }
+    GROUP BY ?inspection
+  }
+
+  OPTIONAL {
+    SELECT ?inspection (GROUP_CONCAT(DISTINCT ?equipmentName; separator=", ") AS ?equipment)
+    WHERE {
+      ?inspection ocqa:hasInspectionEquipment ?equipmentIri .
+      BIND(REPLACE(STR(?equipmentIri), "^.*[#/]", "") AS ?equipmentName)
+    }
+    GROUP BY ?inspection
+  }
+
+  OPTIONAL {
+    SELECT ?inspection (GROUP_CONCAT(DISTINCT ?damageName; separator=", ") AS ?nonconformities)
+    WHERE {
+      ?inspection ocqa:hasRecord ?damage .
+      BIND(REPLACE(STR(?damage), "^.*[#/]", "") AS ?damageName)
+    }
+    GROUP BY ?inspection
+  }
+
+  OPTIONAL {
+    SELECT ?inspection (GROUP_CONCAT(DISTINCT ?damageId; separator=", ") AS ?damageIds)
+    WHERE {
+      ?inspection ocqa:hasRecord ?damage .
+      ?damage (brio:damageId|brio:damageID) ?damageId .
+    }
+    GROUP BY ?inspection
+  }
+
+  OPTIONAL {
+    SELECT ?inspection (GROUP_CONCAT(DISTINCT ?damageAreaText; separator=", ") AS ?damageAreaLocation)
+    WHERE {
+      ?inspection ocqa:hasRecord ?damage .
+      ?damage brio:hasDamageArea ?damageArea .
+      BIND(REPLACE(STR(?damageArea), "^.*[#/]", "") AS ?damageAreaName)
+      ?damageArea brima:hasRelativeLocation ?relativeLocation .
+      BIND(REPLACE(STR(?relativeLocation), "^.*[#/]", "") AS ?relativeLocationName)
+      BIND(CONCAT(?damageAreaName, " has relative location ", ?relativeLocationName) AS ?damageAreaText)
+    }
+    GROUP BY ?inspection
+  }
+
+  OPTIONAL {
+    ?inspection (dicp:precedes|brio:preceeds) ?nextInspectionIri .
+    BIND(REPLACE(STR(?nextInspectionIri), "^.*[#/]", "") AS ?nextInspection)
+
+    OPTIONAL {
+      ?nextInspectionIri dicp:occupiesTimeInterval ?nextInterval .
+      ?nextInterval dice:hasStart ?nextInspectionStart ;
+                    dice:hasEnd ?nextInspectionEnd .
+    }
+  }
+}

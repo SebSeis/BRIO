@@ -1,0 +1,662 @@
+@prefix : <https://w3id.org/brio#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dicp: <https://w3id.org/digitalconstruction/0.5/Processes#> .
+@prefix ocqa: <https://w3id.org/ocqa#> .
+@prefix ocqa-reg: <https://w3id.org/ocqa/regulation#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/brio> a owl:Ontology ;
+    rdfs:label "BrIO-Ontologie"@de,
+        "BrIO ontology"@en ;
+    dcterms:editor "Patricia Peralta",
+        "Sebastian Seiß",
+        "Yuan Zheng" ;
+    dcterms:title "BrIO"@en ;
+    vann:preferredNamespacePrefix "brio" ;
+    vann:preferredNamespaceUri : ;
+    rdfs:comment "Ontologie für die Planung von Brückenprüfungen und das Management von Brückenprüfungsdaten."@de,
+        "Ontology for bridge inspection planning and bridge inspection data management."@en ;
+    rdfs:isDefinedBy : ;
+    owl:versionIRI <https://w3id.org/brio/0.1.1> ;
+    owl:versionInfo "0.1.1" .
+
+:2018S3_Damage_669-02 a owl:NamedIndividual,
+        ocqa:Image ;
+    rdfs:label "Schadensbild 2018 S3 669-02"@de,
+        "Damage image 2018 S3 669-02"@en ;
+    rdfs:comment "Platzhalter-Individuum für schadensbezogene Dokumentation im Beispiel."@de,
+        "Placeholder individual for damage-related documentation in the example case."@en .
+
+:AASHTO-Manual a owl:Class ;
+    rdfs:label "AASHTO-Handbuch"@de ;
+    rdfs:comment "Klasse für AASHTO-Handbücher, die als Richtlinien für die Brückenprüfung verwendet werden."@de,
+        "Class for AASHTO manuals used as bridge inspection guidelines."@en ;
+    rdfs:subClassOf ocqa-reg:Guideline .
+
+:AccessMeasure a owl:Class ;
+    rdfs:label "Zugangsmaßnahme"@de ;
+    rdfs:comment "Vorbereitende Maßnahme, die erforderlich ist, um physischen Zugang zum Prüfungsobjekt zu erhalten."@de,
+        "Preparatory measure required to obtain physical access to the inspection object."@en ;
+    rdfs:subClassOf :PreparatoryMeasure .
+
+:ActualCrackWidth01 a owl:NamedIndividual,
+        ocqa:ActualCharacteristicValue ;
+    rdfs:label "Tatsächliche Rissbreite 01"@de ;
+    rdfs:comment "Gemessener Rissbreitenwert für das erste Rissbreitenmerkmal."@de,
+        "Measured crack width value for the first crack-width characteristic."@en ;
+    :hasUnit "mm" ;
+    :hasValue 8e-02 .
+
+:ActualCrackWidth02 a owl:NamedIndividual,
+        ocqa:ActualCharacteristicValue ;
+    rdfs:label "Tatsächliche Rissbreite 02"@de ;
+    rdfs:comment "Gemessener Rissbreitenwert für das zweite Rissbreitenmerkmal."@de,
+        "Measured crack width value for the second crack-width characteristic."@en ;
+    :hasUnit "mm" ;
+    :hasValue 1.8e-01 .
+
+:AssignedMaxCrackWidth a owl:NamedIndividual,
+        ocqa:AssignedCharacteristicValue ;
+    rdfs:label "Vorgegebene maximale Rissbreite"@de ;
+    rdfs:comment "Vorgegebene maximal zulässige Rissbreite, die als Referenzwert verwendet wird."@de,
+        "Assigned maximum allowable crack width used as reference value."@en ;
+    :hasMaxValue 1e-01 ;
+    :hasUnit "mm" .
+
+:BasketTruck a owl:NamedIndividual,
+        :BridgeAccessEquipment ;
+    rdfs:label "Hubkorbfahrzeug"@de ;
+    rdfs:comment "Brückenzugangsausrüstung in Form eines orangefarbenen Hubkorbfahrzeugs."@de,
+        "Bridge access equipment represented by an orange basket truck."@en ;
+    :equipmentID "A1-65" ;
+    :equipmentName "Basket truck orange" .
+
+:BridgeAttachementInspection a owl:Class ;
+    rdfs:label "Prüfung von Brückenanbauteilen (veraltet)"@de,
+        "bridge attachment inspection (deprecated)"@en ;
+    rdfs:comment "Veraltete Klasse mit falsch geschriebener IRI. Verwenden Sie stattdessen brio:BridgeAttachmentInspection."@de,
+        "Deprecated misspelled class IRI. Use brio:BridgeAttachmentInspection instead."@en ;
+    rdfs:seeAlso :BridgeAttachmentInspection ;
+    rdfs:subClassOf :Sub-componentInspection ;
+    owl:deprecated true ;
+    owl:equivalentClass :BridgeAttachmentInspection .
+
+:BridgeBearingInspection a owl:Class ;
+    rdfs:label "Lagerprüfung"@de ;
+    rdfs:comment "Prüfung von Brückenlagern."@de,
+        "Inspection of bridge bearings."@en ;
+    rdfs:subClassOf :Sub-componentInspection .
+
+:BridgeDrainageSystemInspection a owl:Class ;
+    rdfs:label "Entwässerungssystemprüfung"@de ;
+    rdfs:comment "Prüfung des Entwässerungssystems einer Brücke."@de,
+        "Inspection of the bridge drainage system."@en ;
+    rdfs:subClassOf :Sub-componentInspection .
+
+:BridgeFoundationInspection a owl:Class ;
+    rdfs:label "Gründungsprüfung"@de ;
+    rdfs:comment "Prüfung von Gründungselementen einer Brücke."@de,
+        "Inspection of bridge foundation elements."@en ;
+    rdfs:subClassOf :Sub-componentInspection .
+
+:BridgeJointInspection a owl:Class ;
+    rdfs:label "Fugenprüfung"@de ;
+    rdfs:comment "Prüfung von Brückenfugen."@de,
+        "Inspection of bridge joints."@en ;
+    rdfs:subClassOf :Sub-componentInspection .
+
+:BridgeMasonryComponentInspection a owl:Class ;
+    rdfs:label "Prüfung von Mauerwerksbauteilen der Brücke"@de ;
+    rdfs:comment "Prüfung von Brückenbauteilen aus Mauerwerk."@de,
+        "Inspection of bridge components made of masonry."@en ;
+    rdfs:subClassOf :Material-basedInspection .
+
+:BridgeRailingSystemInspection a owl:Class ;
+    rdfs:label "Geländersystemprüfung"@de ;
+    rdfs:comment "Prüfung von Geländersystemen einer Brücke."@de,
+        "Inspection of bridge railing systems."@en ;
+    rdfs:subClassOf :Sub-componentInspection .
+
+:BridgeSteelCoatingInspection a owl:Class ;
+    rdfs:label "Beschichtungsprüfung von Stahlbauteilen"@de ;
+    rdfs:comment "Prüfung von Beschichtungen auf Stahlbauteilen der Brücke."@de,
+        "Inspection of coatings on steel bridge components."@en ;
+    rdfs:subClassOf :Sub-componentInspection .
+
+:BridgeSteelStructureInspection a owl:Class ;
+    rdfs:label "Stahlbauwerksprüfung"@de ;
+    rdfs:comment "Prüfung von Stahltragwerken oder Stahlbauteilen einer Brücke."@de,
+        "Inspection of steel bridge structures or steel bridge components."@en ;
+    rdfs:subClassOf :Material-basedInspection .
+
+:BridgeTimberStructureInspection a owl:Class ;
+    rdfs:label "Holzbauwerksprüfung"@de ;
+    rdfs:comment "Prüfung von Holztragwerken oder Holzbauteilen einer Brücke."@de,
+        "Inspection of timber bridge structures or timber bridge components."@en ;
+    rdfs:subClassOf :Material-basedInspection .
+
+:BridgeWearingSurfaceInspection a owl:Class ;
+    rdfs:label "Fahrbahnoberflächenprüfung"@de ;
+    rdfs:comment "Prüfung der Fahrbahnoberfläche einer Brücke."@de,
+        "Inspection of the bridge wearing surface."@en ;
+    rdfs:subClassOf :Sub-componentInspection .
+
+:CrackWidth01 a owl:NamedIndividual,
+        ocqa:Characteristic ;
+    rdfs:label "Rissbreite 01"@de ;
+    rdfs:comment "Erstes Rissbreitenmerkmal, das in der Prüfung bewertet wird."@de,
+        "First crack-width characteristic evaluated in the inspection."@en .
+
+:CrackWidth02 a owl:NamedIndividual,
+        ocqa:Characteristic ;
+    rdfs:label "Rissbreite 02"@de ;
+    rdfs:comment "Zweites Rissbreitenmerkmal, das in der Prüfung bewertet wird."@de,
+        "Second crack-width characteristic evaluated in the inspection."@en .
+
+:CrackWidthGauge a owl:NamedIndividual,
+        :BridgeInspectionEquipment ;
+    rdfs:label "Rissbreitenmesser"@de ;
+    rdfs:comment "Prüfungsausrüstung zur Messung der Rissbreite."@de,
+        "Inspection equipment used to measure crack width."@en ;
+    :equipmentID "I600-02" .
+
+:CrackWidthMeasurement a owl:NamedIndividual,
+        ocqa:InspectionProcedure ;
+    rdfs:label "Rissbreitenmessung"@de ;
+    rdfs:comment "Prüfungsverfahren zur Messung der Rissbreite."@de,
+        "Inspection procedure used to measure crack width."@en .
+
+:D_Schrute a owl:NamedIndividual,
+        ocqa:Inspector ;
+    rdfs:label "D. Schrute"@de ;
+    rdfs:comment "Inspektor, der an der Beispielprüfung beteiligt ist."@de,
+        "Inspector participating in the example inspection."@en .
+
+:Damage669-Crack a owl:NamedIndividual,
+        ocqa:Nonconformity ;
+    rdfs:label "Schaden 669 Riss"@de ;
+    rdfs:comment "Erfasster Rissschaden, der während der Beispielprüfung festgestellt wurde."@de,
+        "Recorded crack damage identified during the example inspection."@en ;
+    :damageID "BSP-ID 669-S2-01" ;
+    :description "Side surface, concrete, entire component, crack width 0.1 < 0.2 mm, downstream" ;
+    :hasDurabilityRating 1e+00 ;
+    :hasStructuralRating 0e+00 ;
+    :hasTrafficSafetyRating 0e+00 .
+
+:DestructiveTestingEquipment a owl:Class ;
+    rdfs:label "Ausrüstung für zerstörende Prüfung"@de ;
+    rdfs:comment "Prüfungsausrüstung für Verfahren der zerstörenden Prüfung."@de,
+        "Inspection equipment used for destructive testing methods."@en ;
+    rdfs:subClassOf ocqa:InspectionEquipment .
+
+:Insp_Girder_S3_InnerSurface_2021 a owl:NamedIndividual,
+        :BridgeConcreteComponentInspection ;
+    rdfs:label "Prüfung Träger S3 Innenoberfläche 2021"@de ;
+    rdfs:comment "Beispielhafte Prüfungsinstanz für die Innenoberfläche von Träger S3 im Jahr 2021."@de,
+        "Example inspection instance for the inner surface of girder S3 in 2021."@en ;
+    :hasInspectionType :RoutineInspection .
+
+:Insp_Girder_S3_OuterSurface_2018 a owl:NamedIndividual,
+        :BridgeConcreteComponentInspection ;
+    rdfs:label "Prüfung Träger S3 Außenoberfläche 2018"@de ;
+    rdfs:comment "Beispielhafte Prüfungsinstanz für die Außenoberfläche von Träger S3 im Jahr 2018."@de,
+        "Example inspection instance for the outer surface of girder S3 in 2018."@en ;
+    :accessibility "complex" ;
+    :quantity "94.15 m" ;
+    :recommendation "Damage repair required in the medium term" .
+
+:M_Scott a owl:NamedIndividual,
+        ocqa:Inspector ;
+    rdfs:label "M. Scott"@de ;
+    rdfs:comment "Inspektor, der an der Beispielprüfung beteiligt ist."@de,
+        "Inspector participating in the example inspection."@en .
+
+:Non-destructiveTestingEquipment a owl:Class ;
+    rdfs:label "Ausrüstung für zerstörungsfreie Prüfung"@de ;
+    rdfs:comment "Prüfungsausrüstung für Verfahren der zerstörungsfreien Prüfung."@de,
+        "Inspection equipment used for non-destructive testing methods."@en ;
+    rdfs:subClassOf ocqa:InspectionEquipment .
+
+:SiteInspection a owl:Class ;
+    rdfs:label "Ortsterminprüfung"@de ;
+    rdfs:comment "Prüfung, die direkt vor Ort an der Brücke durchgeführt wird."@de,
+        "Inspection performed directly on site at the bridge."@en ;
+    rdfs:subClassOf :BridgeComponentInspection .
+
+:TrafficSafety01 a owl:NamedIndividual,
+        :TrafficSafetyMeasure ;
+    rdfs:label "Verkehrssicherungsmaßnahme 01"@de,
+        "Traffic safety measure 01"@en ;
+    rdfs:comment "Beispielhafte Verkehrssicherungsmaßnahme, die während der Prüfung eingesetzt wird."@de,
+        "Example traffic safety measure used during the inspection."@en ;
+    :description "Traffic cone" .
+
+:accessibility a owl:DatatypeProperty ;
+    rdfs:label "Zugänglichkeit"@de ;
+    rdfs:comment "Qualitative Zugänglichkeit eines Brückenbauteils für die Prüfung, zum Beispiel einfach, eingeschränkt oder komplex."@de,
+        "Qualitative accessibility of a bridge component for inspection, for example easy, limited, or complex."@en ;
+    rdfs:domain :BridgeComponentInspection ;
+    rdfs:range xsd:string .
+
+:damageID a owl:DatatypeProperty ;
+    rdfs:label "Schadens-ID"@de ;
+    rdfs:comment "Kennung, die einer festgestellten Nichtkonformität oder einem Schaden zugeordnet ist."@de,
+        "Identifier assigned to a detected nonconformity or damage."@en ;
+    rdfs:domain ocqa:Nonconformity ;
+    rdfs:range xsd:string .
+
+:description a owl:DatatypeProperty ;
+    rdfs:label "Beschreibung"@de ;
+    rdfs:comment "Textuelle Beschreibung einer Ressource."@de,
+        "Textual description of a resource."@en ;
+    rdfs:range xsd:string .
+
+:environment a owl:DatatypeProperty ;
+    rdfs:label "Umgebung"@de ;
+    rdfs:comment "Umgebungskontext, der für die Prüfung relevant ist."@de,
+        "Environmental context relevant to the inspection."@en ;
+    rdfs:domain :BridgeComponentInspection ;
+    rdfs:range xsd:string .
+
+:equipmentID a owl:DatatypeProperty ;
+    rdfs:label "Ausrüstungs-ID"@de ;
+    rdfs:comment "Kennung, die einer Prüfungsausrüstung zugeordnet ist."@de,
+        "Identifier assigned to a piece of inspection equipment."@en ;
+    rdfs:domain ocqa:InspectionEquipment ;
+    rdfs:range xsd:string .
+
+:equipmentName a owl:DatatypeProperty ;
+    rdfs:label "Ausrüstungsname"@de ;
+    rdfs:comment "Menschenlesbarer Name einer Prüfungsausrüstung."@de,
+        "Human-readable name of a piece of inspection equipment."@en ;
+    rdfs:domain ocqa:InspectionEquipment ;
+    rdfs:range xsd:string .
+
+:hasDurabilityRating a owl:DatatypeProperty ;
+    rdfs:label "hat Dauerhaftigkeitsbewertung"@de ;
+    rdfs:comment "Numerische Bewertung, die die Dauerhaftigkeitsauswirkung einer festgestellten Nichtkonformität ausdrückt."@de,
+        "Numeric rating that expresses the durability impact of a detected nonconformity."@en ;
+    rdfs:domain ocqa:Nonconformity ;
+    rdfs:range xsd:double .
+
+:hasInspectionType a owl:ObjectProperty ;
+    rdfs:label "hat Prüfungstyp"@de ;
+    rdfs:comment "Verknüpft eine Prüfung mit ihrem Prüfungstyp."@de,
+        "Relates an inspection to its inspection type."@en ;
+    rdfs:domain :BridgeComponentInspection ;
+    rdfs:range :BridgeInspectionType .
+
+:hasInspector a owl:ObjectProperty ;
+    rdfs:label "hat Inspektor"@de ;
+    rdfs:comment "Verknüpft eine Prüfung mit dem verantwortlichen Inspektor."@de,
+        "Relates an inspection to the responsible inspector."@en ;
+    rdfs:domain ocqa:Inspection ;
+    rdfs:range ocqa:Inspector .
+
+:hasMaxValue a owl:DatatypeProperty ;
+    rdfs:label "hat Maximalwert"@de ;
+    rdfs:comment "Maximal zulässiger oder vorgegebener Wert für eine Merkmalswertspezifikation."@de,
+        "Maximum allowed or assigned value for a characteristic value specification."@en ;
+    rdfs:domain ocqa:AssignedCharacteristicValue ;
+    rdfs:range xsd:double .
+
+:hasStructuralRating a owl:DatatypeProperty ;
+    rdfs:label "hat Standsicherheitsbewertung"@de ;
+    rdfs:comment "Numerische Bewertung, die die statische Auswirkung einer festgestellten Nichtkonformität ausdrückt."@de,
+        "Numeric rating that expresses the structural impact of a detected nonconformity."@en ;
+    rdfs:domain ocqa:Nonconformity ;
+    rdfs:range xsd:double .
+
+:hasTrafficSafetyRating a owl:DatatypeProperty ;
+    rdfs:label "hat Verkehrssicherheitsbewertung"@de ;
+    rdfs:comment "Numerische Bewertung, die die Auswirkung einer festgestellten Nichtkonformität auf die Verkehrssicherheit ausdrückt."@de,
+        "Numeric rating that expresses the traffic-safety impact of a detected nonconformity."@en ;
+    rdfs:domain ocqa:Nonconformity ;
+    rdfs:range xsd:double .
+
+:hasUnit a owl:DatatypeProperty ;
+    rdfs:label "hat Einheit"@de ;
+    rdfs:comment "Einheit, die mit einem gemessenen oder vorgegebenen Wert verbunden ist."@de,
+        "Unit associated with a measured or assigned value."@en ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ocqa:ActualCharacteristicValue ocqa:AssignedCharacteristicValue ) ] ;
+    rdfs:range xsd:string .
+
+:hasValue a owl:DatatypeProperty ;
+    rdfs:label "hat Wert"@de ;
+    rdfs:comment "Beobachteter numerischer Wert einer Merkmalswertressource."@de,
+        "Observed numeric value of a characteristic value resource."@en ;
+    rdfs:domain ocqa:ActualCharacteristicValue ;
+    rdfs:range xsd:double .
+
+:inspectionFrequency a owl:DatatypeProperty ;
+    rdfs:label "Prüfungshäufigkeit"@de ;
+    rdfs:comment "Frequenzangabe für einen Prüfungstyp. In dieser Version wird sie als Zeichenkette repräsentiert."@de,
+        "Häufigkeit oder Intervall, in dem ein Prüfungstyp normalerweise durchgeführt wird."@de,
+        "Frequency or interval at which an inspection type is normally carried out."@en,
+        "Frequency statement for an inspection type. In this version it is represented as a string."@en ;
+    rdfs:domain :BridgeInspectionType ;
+    rdfs:range xsd:string .
+
+:inspectionScope a owl:DatatypeProperty ;
+    rdfs:label "Prüfungsumfang"@de ;
+    rdfs:comment "Textuelle Beschreibung des Umfangs eines Prüfungstyps."@de,
+        "Textual description of the scope of an inspection type."@en ;
+    rdfs:domain :BridgeInspectionType ;
+    rdfs:range xsd:string .
+
+:preceeds a owl:ObjectProperty ;
+    rdfs:label "preceeds (veraltet)"@de,
+        "preceeds (deprecated)"@en ;
+    rdfs:comment "Veraltete, falsch geschriebene Eigenschafts-IRI. Verwenden Sie stattdessen dicp:precedes."@de,
+        "Deprecated misspelled property IRI. Use dicp:precedes instead."@en ;
+    rdfs:domain :PreparatoryMeasure ;
+    rdfs:range ocqa:Inspection ;
+    rdfs:seeAlso dicp:precedes ;
+    owl:deprecated true ;
+    owl:equivalentProperty dicp:precedes .
+
+:quantity a owl:DatatypeProperty ;
+    rdfs:label "Menge"@de ;
+    rdfs:comment "Quantity inspected of a bridge component (e.g., m, m2)",
+        "Menge des inspizierten Brückenbauteils, derzeit als Text einschließlich der Einheit dargestellt."@de,
+        "Quantity of the inspected bridge component, currently represented as text including the unit."@en ;
+    rdfs:domain :BridgeComponentInspection ;
+    rdfs:range xsd:string .
+
+:recommendation a owl:DatatypeProperty ;
+    rdfs:label "Empfehlung"@de ;
+    rdfs:comment "Recommendations for a bridge component after an inspection",
+        "Empfehlung, die aus dem Prüfungsergebnis abgeleitet wird."@de,
+        "Recommendation derived from the inspection result."@en ;
+    rdfs:domain :BridgeComponentInspection ;
+    rdfs:range xsd:string .
+
+ocqa:Conformity a owl:Class ;
+    rdfs:label "Konformität"@de ;
+    rdfs:comment "Bewertungsergebnis, das angibt, dass das Prüfungsobjekt dem geforderten Zustand entspricht."@de,
+        "Evaluation result stating that the inspection object conforms to the required condition."@en ;
+    rdfs:subClassOf ocqa:Evaluation .
+
+ocqa:ExternalResource a owl:Class ;
+    rdfs:label "Externe Ressource"@de ;
+    rdfs:comment "Dokumentationsressource, die außerhalb des Ontologiedatensatzes gehostet wird, zum Beispiel ein verlinktes Dokument."@de,
+        "Documentation resource hosted outside the ontology dataset, for example a linked document."@en ;
+    rdfs:subClassOf :Documentation .
+
+ocqa:Video a owl:Class ;
+    rdfs:label "Video"@de ;
+    rdfs:comment "Video, das als Prüfungsdokumentation verwendet wird."@de,
+        "Video used as inspection documentation."@en ;
+    rdfs:subClassOf :Documentation .
+
+ocqa:hasActualCharacteristic a owl:ObjectProperty ;
+    rdfs:label "hat tatsächlichen Merkmalswert"@de ;
+    rdfs:comment "Verknüpft ein Merkmal mit seinem beobachteten oder gemessenen Istwert."@de,
+        "Relates a characteristic to its observed or measured actual value."@en ;
+    rdfs:domain ocqa:Characteristic ;
+    rdfs:range ocqa:ActualCharacteristicValue .
+
+ocqa:hasAssignedCharacteristicValue a owl:ObjectProperty ;
+    rdfs:label "hat vorgegebenen Merkmalswert"@de ;
+    rdfs:comment "Verknüpft ein Merkmal mit seinem zugewiesenen Referenz- oder Sollwert."@de,
+        "Relates a characteristic to its assigned reference or target value."@en ;
+    rdfs:domain ocqa:Characteristic ;
+    rdfs:range ocqa:AssignedCharacteristicValue .
+
+ocqa:hasDocumentation a owl:ObjectProperty ;
+    rdfs:label "hat Dokumentation"@de ;
+    rdfs:comment "Verknüpft eine Prüfung oder Bewertung mit Dokumentation wie Bildern, Videos oder externen Ressourcen."@de,
+        "Relates an inspection or evaluation to documentation such as images, videos, or external resources."@en ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( ocqa:Evaluation ocqa:Inspection ) ] ;
+    rdfs:range :Documentation .
+
+ocqa:hasInspCharacteristic a owl:ObjectProperty ;
+    rdfs:label "hat Prüfungsmerkmal"@de ;
+    rdfs:comment "Verknüpft eine Prüfung mit den Merkmalen, die in dieser Prüfung bewertet werden."@de,
+        "Relates an inspection to the characteristics that are evaluated in that inspection."@en ;
+    rdfs:domain ocqa:Inspection ;
+    rdfs:range ocqa:Characteristic .
+
+ocqa:hasInspection a owl:ObjectProperty ;
+    rdfs:label "hat Prüfung"@de ;
+    rdfs:comment "Verknüpft eine Ressource mit einer Prüfung."@de,
+        "Relates a resource to an inspection."@en ;
+    rdfs:range ocqa:Inspection .
+
+ocqa:hasInspectionEquipment a owl:ObjectProperty ;
+    rdfs:label "hat Prüfungsausrüstung"@de ;
+    rdfs:comment "Verknüpft eine Prüfung mit der Ausrüstung, die zu ihrer Durchführung verwendet wird."@de,
+        "Relates an inspection to the equipment used to perform it."@en ;
+    rdfs:domain ocqa:Inspection ;
+    rdfs:range ocqa:InspectionEquipment .
+
+ocqa:hasInspectionProcedure a owl:ObjectProperty ;
+    rdfs:label "hat Prüfungsverfahren"@de ;
+    rdfs:comment "Verknüpft eine Prüfung mit dem Verfahren, das während der Prüfung angewendet wird."@de,
+        "Relates an inspection to the procedure applied during the inspection."@en ;
+    rdfs:domain ocqa:Inspection ;
+    rdfs:range ocqa:InspectionProcedure .
+
+ocqa:hasRecord a owl:ObjectProperty ;
+    rdfs:label "hat Befund"@de ;
+    rdfs:comment "Verknüpft eine Prüfung mit einem Bewertungsergebnis, das einen Befund dokumentiert."@de,
+        "Relates an inspection to an evaluation result that records a finding."@en ;
+    rdfs:domain ocqa:Inspection ;
+    rdfs:range ocqa:Evaluation .
+
+ocqa-reg:DIN-Norm a owl:Class ;
+    rdfs:label "DIN-Norm"@de ;
+    rdfs:comment "Klasse für Normen, die im DIN-Normungsrahmen veröffentlicht werden."@de,
+        "Class for standards published in the DIN standardization framework."@en ;
+    rdfs:subClassOf ocqa-reg:Norm .
+
+ocqa-reg:requiredby a owl:ObjectProperty ;
+    rdfs:label "requiredby (veraltet)"@de,
+        "requiredby (deprecated)"@en ;
+    rdfs:comment "Veraltete Eigenschaft mit uneinheitlicher Groß- und Kleinschreibung. Verwenden Sie stattdessen ocqa-reg:requiredBy."@de,
+        "Deprecated property with non-standard casing. Use ocqa-reg:requiredBy instead."@en ;
+    rdfs:domain ocqa:Inspection ;
+    rdfs:range :Regulation ;
+    rdfs:seeAlso ocqa-reg:requiredBy ;
+    owl:deprecated true ;
+    owl:equivalentProperty ocqa-reg:requiredBy .
+
+:BridgeAccessEquipment a owl:Class ;
+    rdfs:label "Brückenzugangsausrüstung"@de ;
+    rdfs:comment "Prüfungsausrüstung, die zum Zugang zu Brückenbauteilen verwendet wird, zum Beispiel ein Hubkorbfahrzeug oder ein Brückenuntersichtgerät."@de,
+        "Inspection equipment used to access bridge components, for example a basket truck or under-bridge unit."@en ;
+    rdfs:subClassOf ocqa:InspectionEquipment .
+
+:BridgeInspectionEquipment a owl:Class ;
+    rdfs:label "Brückenprüfungsausrüstung"@de ;
+    rdfs:comment "Prüfungsausrüstung, die speziell für Aufgaben der Brückenprüfung verwendet wird."@de,
+        "Inspection equipment specifically used for bridge inspection tasks."@en ;
+    rdfs:subClassOf ocqa:InspectionEquipment .
+
+:DamageInspection a owl:NamedIndividual,
+        :BridgeInspectionType ;
+    rdfs:label "Schadensprüfung"@de ;
+    rdfs:comment "Prüfungstyp, der nach einem Ereignis oder bei vermutetem Schaden durchgeführt wird."@de,
+        "Inspection type performed after an event or when damage is suspected."@en ;
+    :inspectionFrequency "After an event" ;
+    :inspectionScope "An Inspection after specific events (e.g. natural disasters, impact) that could damage one or several bridge components" .
+
+:In-depthInspection a owl:NamedIndividual,
+        :BridgeInspectionType ;
+    rdfs:label "Eingehende Prüfung"@de ;
+    rdfs:comment "Prüfungstyp für eine detaillierte und handnahe Brückenprüfung."@de,
+        "Inspection type representing a detailed and hands-on bridge inspection."@en ;
+    :inspectionFrequency "Every 6 years" ;
+    :inspectionScope "Detailed and hands-on inspection of all bridge components; access equipment and non-destructive equipment are required" .
+
+:InventoryInspection a owl:NamedIndividual,
+        :BridgeInspectionType ;
+    rdfs:label "Erstprüfung"@de ;
+    rdfs:comment "Prüfungstyp, der zu Beginn des Brückenbetriebs durchgeführt wird."@de,
+        "Inspection type performed at the beginning of bridge operation."@en ;
+    :inspectionFrequency "At beginning of operation" ;
+    :inspectionScope "Baseline condition assessment of a bridge at the beginning of its operation, hands-on inspection of all bridge components" .
+
+:SpecialInspection a owl:NamedIndividual,
+        :BridgeInspectionType ;
+    rdfs:label "Sonderprüfung"@de ;
+    rdfs:comment "Prüfungstyp für Sonderfälle, die eine zusätzliche gezielte Prüfung erfordern."@de,
+        "Inspection type for special cases that require additional targeted inspection."@en ;
+    :inspectionFrequency "When requested" ;
+    :inspectionScope "An additional inspection required for known or suspected deficiencies; e.g., underwater inspection, post-tension strand investigation, fatigue investigation, seismic investigation, bridge component with advance deterioration" .
+
+:TrafficSafetyMeasure a owl:Class ;
+    rdfs:label "Verkehrssicherungsmaßnahme"@de ;
+    rdfs:comment "Vorbereitende Maßnahme zur Sicherstellung der Verkehrssicherheit während einer Prüfung."@de,
+        "Preparatory measure used to ensure traffic safety during an inspection."@en ;
+    rdfs:subClassOf :PreparatoryMeasure .
+
+ocqa:Image a owl:Class ;
+    rdfs:label "Bild"@de ;
+    rdfs:comment "Bild, das als Prüfungsdokumentation verwendet wird."@de,
+        "Image used as inspection documentation."@en ;
+    rdfs:subClassOf :Documentation .
+
+ocqa-reg:Guideline a owl:Class ;
+    rdfs:label "Richtlinie"@de ;
+    rdfs:comment "Richtlinie, die Brückenprüfungen regelt oder unterstützt."@de,
+        "Guideline that governs or supports bridge inspection activities."@en ;
+    rdfs:subClassOf :Regulation .
+
+ocqa-reg:Norm a owl:Class ;
+    rdfs:label "Norm"@de ;
+    rdfs:comment "Normatives Dokument, das Anforderungen oder empfohlene Praxis festlegt."@de,
+        "Normative document that specifies requirements or recommended practice."@en ;
+    rdfs:subClassOf :Regulation .
+
+:BridgeAttachmentInspection a owl:Class ;
+    rdfs:label "Prüfung von Brückenanbauteilen"@de,
+        "bridge attachment inspection"@en ;
+    rdfs:comment "Prüfung von an der Brücke befestigten Elementen wie montierten Geräten oder Zubehör."@de,
+        "Inspection of attached bridge elements such as mounted devices or accessories."@en ;
+    rdfs:subClassOf :Sub-componentInspection .
+
+:BridgeConcreteComponentInspection a owl:Class ;
+    rdfs:label "Prüfung von Betonbauteilen der Brücke"@de ;
+    rdfs:comment "Prüfung von Brückenbauteilen aus Beton."@de,
+        "Inspection of bridge components made of concrete."@en ;
+    rdfs:subClassOf :Material-basedInspection .
+
+:RoutineInspection a owl:NamedIndividual,
+        :BridgeInspectionType ;
+    rdfs:label "Regelprüfung"@de ;
+    rdfs:comment "Prüfungstyp für eine regelmäßig geplante Sichtprüfung."@de,
+        "Inspection type representing a regular scheduled visual inspection."@en ;
+    :inspectionFrequency "Every 3 years" ;
+    :inspectionScope "Regularly scheduled visual inspection of accessible bridge components, access equipment is not necessary" .
+
+dicp:precedes a owl:ObjectProperty ;
+    rdfs:label "geht voraus"@de,
+        "precedes"@en ;
+    rdfs:comment "Verknüpft eine vorbereitende Maßnahme mit einer Prüfung, der sie vorausgeht."@de,
+        "Relates a preparatory measure to an inspection that it precedes."@en ;
+    rdfs:domain :PreparatoryMeasure ;
+    rdfs:range ocqa:Inspection .
+
+ocqa:InspectionProcedure a owl:Class ;
+    rdfs:label "Prüfungsverfahren"@de ;
+    rdfs:comment "Verfahren oder Methode, das bzw. die während einer Prüfung angewendet wird."@de,
+        "Procedure or method applied during an inspection."@en .
+
+ocqa-reg:requiredBy a owl:ObjectProperty ;
+    rdfs:label "erforderlich durch"@de,
+        "required by"@en ;
+    rdfs:comment "Verknüpft eine Prüfung mit der Regelung, durch die sie gefordert oder definiert wird."@de,
+        "Links an inspection to the regulation that requires or defines it."@en ;
+    rdfs:domain ocqa:Inspection ;
+    rdfs:range :Regulation .
+
+ocqa:Inspector a owl:Class ;
+    rdfs:label "Inspektor"@de ;
+    rdfs:comment "Person, die für die Durchführung oder Überwachung einer Prüfung verantwortlich ist."@de,
+        "Person responsible for carrying out or supervising an inspection."@en .
+
+:Documentation a owl:Class ;
+    rdfs:label "Dokumentation"@de ;
+    rdfs:comment "Dokumentationsressource, die während einer Prüfung oder Bewertung erstellt oder verwendet wird."@de,
+        "Documentation resource created or used during an inspection or evaluation."@en .
+
+:Material-basedInspection a owl:Class ;
+    rdfs:label "Materialbasierte Prüfung"@de ;
+    rdfs:comment "Prüfungskategorie, die Prüfungen nach dem Materialtyp des inspizierten Brückenbauteils gruppiert."@de,
+        "Inspection category that groups inspections by material type of the inspected bridge component."@en ;
+    rdfs:subClassOf :BridgeComponentInspection .
+
+:PreparatoryMeasure a owl:Class ;
+    rdfs:label "Vorbereitende Maßnahme"@de ;
+    rdfs:comment "Maßnahme, die durchgeführt werden muss, bevor eine Prüfung erfolgen kann."@de,
+        "Measure that must be carried out before an inspection can be performed."@en .
+
+:Regulation a owl:Class ;
+    rdfs:label "Regelwerk"@de ;
+    rdfs:comment "Normatives oder regulatorisches Dokument, das Brückenprüfungen regelt."@de,
+        "Normative or regulatory document that governs bridge inspection activities."@en .
+
+ocqa:Evaluation a owl:Class ;
+    rdfs:label "Bewertung"@de ;
+    rdfs:comment "Bewertungsergebnis, das während oder nach einer Prüfung erzeugt wird."@de,
+        "Assessment result produced during or after an inspection."@en .
+
+ocqa:ActualCharacteristicValue a owl:Class ;
+    rdfs:label "Tatsächlicher Merkmalswert"@de ;
+    rdfs:comment "Beobachteter oder gemessener Wert eines Prüfungsmerkmals."@de,
+        "Observed or measured value of an inspection characteristic."@en ;
+    owl:disjointWith ocqa:AssignedCharacteristicValue .
+
+ocqa:AssignedCharacteristicValue a owl:Class ;
+    rdfs:label "Vorgegebener Merkmalswert"@de ;
+    rdfs:comment "Referenz- oder Sollwert, der einem Prüfungsmerkmal zugeordnet ist."@de,
+        "Reference or target value assigned to an inspection characteristic."@en .
+
+ocqa:Characteristic a owl:Class ;
+    rdfs:label "Merkmal"@de ;
+    rdfs:comment "Prüfbares Merkmal oder Qualitätsaspekt, der während einer Prüfung bewertet wird."@de,
+        "Inspectable characteristic or quality aspect assessed during an inspection."@en .
+
+ocqa:Nonconformity a owl:Class ;
+    rdfs:label "Nichtkonformität"@de ;
+    rdfs:comment "Bewertungsergebnis, das eine festgestellte Abweichung, einen Mangel oder einen Schaden beschreibt."@de,
+        "Evaluation result describing a detected deficiency, defect, or damage."@en ;
+    rdfs:subClassOf ocqa:Evaluation .
+
+ocqa:InspectionEquipment a owl:Class ;
+    rdfs:label "Prüfungsausrüstung"@de ;
+    rdfs:comment "Ausrüstung, die zur Durchführung einer Prüfung verwendet wird."@de,
+        "Equipment used to perform an inspection."@en .
+
+:BridgeComponentInspection a owl:Class ;
+    rdfs:label "Brückenbauteilprüfung"@de ;
+    rdfs:comment "Prüfung, die auf ein Brückenbauteil oder einen spezifischen Teil eines Brückenbauteils gerichtet ist."@de,
+        "Inspection that targets a bridge component or a specific part of a bridge component."@en ;
+    rdfs:subClassOf ocqa:Inspection .
+
+:BridgeInspectionType a owl:Class ;
+    rdfs:label "Brückenprüfungstyp"@de ;
+    rdfs:comment "Typ oder Kategorie einer Brückenprüfung, zum Beispiel Regelprüfung oder eingehende Prüfung."@de,
+        "Type or category of a bridge inspection, for example routine or in-depth inspection."@en .
+
+:Sub-componentInspection a owl:Class ;
+    rdfs:label "Teilbauteilprüfung"@de ;
+    rdfs:comment "Prüfung eines Teilbauteils eines Brückenbauteils."@de,
+        "Inspection of a sub-component of a bridge component."@en ;
+    rdfs:subClassOf :BridgeComponentInspection .
+
+ocqa:Inspection a owl:Class ;
+    rdfs:label "Prüfung"@de ;
+    rdfs:comment "Prüfungsaktivität, die durchgeführt wird, um ein Brückenbauteil oder ein verwandtes Objekt zu bewerten."@de,
+        "Inspection activity carried out to assess a bridge component or related object."@en .
+
+[] a owl:AllDifferent ;
+    owl:distinctMembers ( :DamageInspection :In-depthInspection :InventoryInspection :RoutineInspection :SpecialInspection ) .
+

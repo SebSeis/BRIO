@@ -1,0 +1,150 @@
+@prefix : <http://example.org/brio/example-case#> .
+@prefix brio: <http://www.semanticweb.org/chl3331/ontologies/2026/2/bridge_inspection#> .
+@prefix dicp: <https://w3id.org/digitalconstruction/0.5/Processes#> .
+@prefix ocqa: <https://w3id.org/ocqa#> .
+@prefix ocqa-reg: <https://w3id.org/ocqa/regulation#> .
+@prefix brot: <http://example.org/bridge-topology#> .
+@prefix brima: <http://example.org/bridge-management#> .
+@prefix dicm: <http://example.org/digitalconstruction/material#> .
+@prefix dice: <http://example.org/digitalconstruction/entities#> .
+@prefix dicv: <http://example.org/digitalconstruction/variables#> .
+@prefix dot: <http://example.org/damage-topology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:ExampleCaseFigureCorrected a owl:Ontology ;
+    rdfs:comment "Corrected executable instance graph reconstructed from the bridge inspection example figure. External prefixes brot, brima, dicm, dice, dicv, and dot are provisional because their ontology IRIs were not provided with the figure." .
+
+### Minimal schema stubs for namespaces shown in the figure but not provided as ontology files
+brot:BridgeComponent a owl:Class .
+brima:ConditionAssessment a owl:Class .
+brima:RelativeLocation a owl:Class .
+dicm:Material a owl:Class .
+dice:TimeInterval a owl:Class .
+dice:Property a owl:Class .
+dot:DamageArea a owl:Class .
+
+dicp:precedes a owl:ObjectProperty ;
+    owl:equivalentProperty brio:preceeds .
+
+dicp:occupiesTimeInterval a owl:ObjectProperty .
+ocqa:hasInspectionObject a owl:ObjectProperty .
+ocqa:isResponsibleFor a owl:ObjectProperty .
+ocqa:hasCharacteristic a owl:ObjectProperty .
+brima:hasConditionAssessment a owl:ObjectProperty .
+dicm:hasMaterial a owl:ObjectProperty .
+brio:hasLength a owl:ObjectProperty .
+brio:hasDamageArea a owl:ObjectProperty .
+brima:hasRelativeLocation a owl:ObjectProperty .
+
+ocqa-reg:requiredBy a owl:ObjectProperty ;
+    owl:equivalentProperty ocqa-reg:requiredby .
+
+brio:damageId a owl:DatatypeProperty ;
+    owl:equivalentProperty brio:damageID .
+
+brima:conditionRating a owl:DatatypeProperty .
+brima:description a owl:DatatypeProperty .
+dice:hasStart a owl:DatatypeProperty .
+dice:hasEnd a owl:DatatypeProperty .
+
+### 2021 inspection event
+:Insp_Girder_S3_OuterSurface_2021 a brio:BridgeConcreteComponentInspection ;
+    dicp:occupiesTimeInterval :TimeInterval_G_S3_2021 ;
+    ocqa:hasInspectionObject :Girder_Span03 .
+
+:TimeInterval_G_S3_2021 a dice:TimeInterval ;
+    dice:hasStart "2021-09-01T09:30:00-06:00"^^xsd:dateTime ;
+    dice:hasEnd "2021-09-01T14:45:00-06:00"^^xsd:dateTime .
+
+:Girder_Span03 a brot:BridgeComponent ;
+    brima:hasConditionAssessment :ConditionS3_2021-09-01 ;
+    dicm:hasMaterial :Concrete ;
+    brio:hasLength :Length .
+
+:ConditionS3_2021-09-01 a brima:ConditionAssessment ;
+    brima:conditionRating "1.1"^^xsd:decimal .
+
+:Concrete a dicm:Material .
+
+:Length a dice:Property ;
+    brio:hasValue "94.15"^^xsd:decimal ;
+    brio:hasUnit "m" .
+
+### 2018 inspection event
+:In-depthInspection a brio:BridgeInspectionType .
+
+:D_Schrute a ocqa:Inspector .
+:M_Scott a ocqa:Inspector .
+
+:TrafficSafety01 a brio:TrafficSafetyMeasure ;
+    dicp:precedes :Insp_Girder_S3_OuterSurface_2018 .
+
+:CrackWidthMeasurement a ocqa:InspectionProcedure .
+:BasketTruck a brio:BridgeAccessEquipment .
+:CrackWidthGauge a brio:BridgeInspectionEquipment .
+
+:Insp_Girder_S3_OuterSurface_2018 a brio:BridgeConcreteComponentInspection ;
+    dicp:precedes :Insp_Girder_S3_OuterSurface_2021 ;
+    brio:hasInspectionType :In-depthInspection ;
+    brio:hasInspector :D_Schrute, :M_Scott ;
+    dicp:occupiesTimeInterval :TimeInterval_G_S3_2018 ;
+    ocqa:hasInspectionObject :Girder_Span03 ;
+    ocqa:hasInspectionProcedure :CrackWidthMeasurement ;
+    ocqa:hasInspectionEquipment :BasketTruck, :CrackWidthGauge ;
+    brio:accessibility "complex" ;
+    brio:recommendation "Damage repair required in the medium term." ;
+    ocqa:hasInspCharacteristic :CrackWidth01, :CrackWidth02 ;
+    ocqa:hasRecord :Damage669-Crack ;
+    ocqa-reg:requiredBy :DIN_1076 .
+
+:D_Schrute ocqa:isResponsibleFor :Insp_Girder_S3_OuterSurface_2018 .
+:M_Scott ocqa:isResponsibleFor :Insp_Girder_S3_OuterSurface_2018 .
+
+:TimeInterval_G_S3_2018 a dice:TimeInterval ;
+    dice:hasStart "2018-08-22T09:00:00-06:00"^^xsd:dateTime ;
+    dice:hasEnd "2018-08-22T14:30:00-06:00"^^xsd:dateTime .
+
+:DIN_1076 a ocqa-reg:DIN-Norm .
+
+### Observed nonconformity and documentation
+<http://example.org/brio/example-case#2021S3_Damage_669-02> a ocqa:Image .
+
+:Damage669-Crack a ocqa:Nonconformity ;
+    ocqa:hasDocumentation <http://example.org/brio/example-case#2021S3_Damage_669-02> ;
+    ocqa:hasCharacteristic :CrackWidth02 ;
+    dicv:hasProperty :CrackWidth02 ;
+    brio:damageId "BSP-ID 669-S3-02" ;
+    brio:description "Side surface, crack width 0.1 < 0.2 mm" ;
+    brio:hasTrafficSafetyRating "0.0"^^xsd:decimal ;
+    brio:hasDurabilityRating "1.0"^^xsd:decimal ;
+    brio:hasStructuralRating "0.0"^^xsd:decimal ;
+    brio:hasDamageArea :Area96 .
+
+:Area96 a dot:DamageArea ;
+    brima:hasRelativeLocation :Location96 .
+
+:Location96 a brima:RelativeLocation ;
+    brima:description "Downstream, left side, 19.95 m from end of Span 3" .
+
+### Inspection characteristics and values
+:CrackWidth01 a ocqa:Characteristic ;
+    ocqa:hasActualCharacteristic :ActualCrackWidth01 .
+
+:ActualCrackWidth01 a ocqa:ActualCharacteristicValue ;
+    brio:hasUnit "mm" ;
+    brio:hasValue "0.08"^^xsd:decimal .
+
+:CrackWidth02 a ocqa:Characteristic ;
+    ocqa:hasAssignedCharacteristicValue :AssignedMaxCrackWidth ;
+    ocqa:hasActualCharacteristic :ActualCrackWidth02 .
+
+:AssignedMaxCrackWidth a ocqa:AssignedCharacteristicValue ;
+    brio:hasUnit "mm" ;
+    brio:hasMaxValue "0.1"^^xsd:decimal .
+
+:ActualCrackWidth02 a ocqa:ActualCharacteristicValue ;
+    brio:hasUnit "mm" ;
+    brio:hasValue "0.18"^^xsd:decimal .
