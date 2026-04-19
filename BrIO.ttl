@@ -68,19 +68,6 @@ vann:preferredNamespaceUri rdf:type owl:AnnotationProperty .
               rdfs:label "hat Inspektor"@de .
 
 
-###  https://w3id.org/brio#preceeds
-:preceeds rdf:type owl:ObjectProperty ;
-          owl:equivalentProperty dicp:precedes ;
-          rdfs:domain :PreparatoryMeasure ;
-          rdfs:range ocqa:Inspection ;
-          rdfs:comment "Deprecated misspelled property IRI. Use dicp:precedes instead."@en ,
-                       "Veraltete, falsch geschriebene Eigenschafts-IRI. Verwenden Sie stattdessen dicp:precedes."@de ;
-          rdfs:label "preceeds (deprecated)"@en ,
-                     "preceeds (veraltet)"@de ;
-          rdfs:seeAlso dicp:precedes ;
-          owl:deprecated "true"^^xsd:boolean .
-
-
 ###  https://w3id.org/digitalconstruction/0.5/Processes#precedes
 dicp:precedes rdf:type owl:ObjectProperty ;
               rdfs:domain :PreparatoryMeasure ;
@@ -175,18 +162,6 @@ ocqa-reg:requiredBy rdf:type owl:ObjectProperty ;
                                  "Verknüpft eine Prüfung mit der Regelung, durch die sie gefordert oder definiert wird."@de ;
                     rdfs:label "erforderlich durch"@de ,
                                "required by"@en .
-
-
-###  https://w3id.org/ocqa/regulation#requiredby
-ocqa-reg:requiredby rdf:type owl:ObjectProperty ;
-                    rdfs:domain ocqa:Inspection ;
-                    rdfs:range :Regulation ;
-                    rdfs:comment "Deprecated property with non-standard casing. Use ocqa-reg:requiredBy instead."@en ,
-                                 "Veraltete Eigenschaft mit uneinheitlicher Groß- und Kleinschreibung. Verwenden Sie stattdessen ocqa-reg:requiredBy."@de ;
-                    rdfs:label "requiredby (deprecated)"@en ,
-                               "requiredby (veraltet)"@de ;
-                    rdfs:seeAlso ocqa-reg:requiredBy ;
-                    owl:deprecated "true"^^xsd:boolean .
 
 
 #################################################################
@@ -371,17 +346,6 @@ ocqa-reg:requiredby rdf:type owl:ObjectProperty ;
                                     "Prüfungsausrüstung, die zum Zugang zu Brückenbauteilen verwendet wird, zum Beispiel ein Hubkorbfahrzeug oder ein Brückenuntersichtgerät."@de ;
                        rdfs:label "Brückenzugangsausrüstung"@de .
 
-
-###  https://w3id.org/brio#BridgeAttachementInspection
-:BridgeAttachementInspection rdf:type owl:Class ;
-                             owl:equivalentClass :BridgeAttachmentInspection ;
-                             rdfs:subClassOf :Sub-componentInspection ;
-                             rdfs:comment "Deprecated misspelled class IRI. Use brio:BridgeAttachmentInspection instead."@en ,
-                                          "Veraltete Klasse mit falsch geschriebener IRI. Verwenden Sie stattdessen brio:BridgeAttachmentInspection."@de ;
-                             rdfs:label "Prüfung von Brückenanbauteilen (veraltet)"@de ,
-                                        "bridge attachment inspection (deprecated)"@en ;
-                             rdfs:seeAlso :BridgeAttachmentInspection ;
-                             owl:deprecated "true"^^xsd:boolean .
 
 
 ###  https://w3id.org/brio#BridgeAttachmentInspection
